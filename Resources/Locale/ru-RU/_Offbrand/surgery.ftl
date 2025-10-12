@@ -28,4 +28,4 @@ cavity-slot-removal-examine = У пациента должен быть пред
 cavity-slot-removal-guide = У пациента должен быть предмет в грудной полости.
 cavity-slot-insertion-examine = У пациента не должно быть предмета в грудной полости.
 cavity-slot-insertion-guide = У пациента не должно быть предмета в грудной полости.
-surgery-cleanup-name = завершение```
+surgery-cleanup-name = завершение

@@ -14,7 +14,7 @@ splints-applied-examine = { CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($tar
 
 wound-count-modifier =
     { CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } { $count ->
-        [1] {INDEFINITE( $wound )} { $wound }
+        [1] { $wound }
         [2] два { $wound }
         [3] несколько { $wound }
         [4] несколько { $wound }
