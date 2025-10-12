@@ -1,13 +1,13 @@
 cpr-target-needs-cpr = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } не имеет пульса и задыхается![/color]
 
 fracture-examine = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-BASIC($target, "выглядит", "выглядит") } будто что-то неправильной формы застряло { POSS-ADJ($target) } под кожей![/color]
-arterial-bleeding-examine = [color=red]{ CAPITALIZE(SUBJECT($target)) } фантанирует кровью![/color]
+arterial-bleeding-examine = [color=red]{ CAPITALIZE(SUBJECT($target)) } фонтанирует кровью![/color]
 bone-death-examine = [color=red]{ CAPITALIZE(SUBJECT($target)) } искалечен![/color]
 
 wound-bleeding-modifier = [color=red]кровоточащие {$wound}[/color]
-wound-tended-modifier = заботиться {$wound}
-wound-bandaged-modifier = имеет перевязку {$wound}
-wound-salved-modifier = спасено {$wound}
+wound-tended-modifier = ухоженные {$wound}
+wound-bandaged-modifier = перевязанные {$wound}
+wound-salved-modifier = помазанные {$wound}
 
 tourniquet-applied-examine = { CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } применяет турникет на { OBJECT($target) }.
 splints-applied-examine = { CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } накладывает шину { OBJECT($target) }.
