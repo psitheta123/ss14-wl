@@ -27,10 +27,10 @@
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-    - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
     - map: [ "enum.HumanoidVisualLayers.Foots" ] # WL-Underwear
+    - map: ["jumpsuit"] # WL-Underwear
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: [ "gloves" ]
@@ -325,10 +325,10 @@
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-    - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
     - map: [ "enum.HumanoidVisualLayers.Foots" ] # WL-Underwear
+    - map: ["jumpsuit"] # WL-Underwear
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: ["enum.HumanoidVisualLayers.Handcuffs"]
@@ -339,10 +339,10 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
+    - map: [ "outerClothing" ] #WL-Change
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
