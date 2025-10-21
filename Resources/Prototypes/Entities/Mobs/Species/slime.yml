@@ -34,8 +34,6 @@
         type: StrippableBoundUserInterface
       enum.CharacterInformationUiKey.Key: # WL-CharacterInformation
         type: CharacterInformationBoundUserInterface
-      enum.MetamorfSlimeUiKey.Key:
-        type: MetamorphosisSlimeBoundUserInterface
   # to prevent bag open/honk spam
   - type: UseDelay
     delay: 0.5
@@ -120,10 +118,6 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
-  - type: MetamorphosisSlime
-    morph: 
-      - test
-      - Bu
 
 - type: entity
   parent: MobHumanDummy
