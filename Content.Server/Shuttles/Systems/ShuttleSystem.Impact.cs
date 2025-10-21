@@ -150,6 +150,14 @@ public sealed partial class ShuttleSystem
             if (!_enabled)
                 continue;
 
+            //WL-Changes-start
+            if (!EntityManager.TryGetComponent<ShuttleComponent>(args.OtherEntity, out var otherComponent))
+                continue;
+
+            if (component.GodShutle || otherComponent.GodShutle)
+                continue;
+            //WL-Changes-end
+
             // Convert the collision point directly to tile indices
             var ourTile = new Vector2i((int)Math.Floor(ourPoint.X / ourGrid.TileSize), (int)Math.Floor(ourPoint.Y / ourGrid.TileSize));
             var otherTile = new Vector2i((int)Math.Floor(otherPoint.X / otherGrid.TileSize), (int)Math.Floor(otherPoint.Y / otherGrid.TileSize));
@@ -249,7 +257,7 @@ public sealed partial class ShuttleSystem
 
             if (direction.LengthSquared() > minsq)
             {
-                _stuns.TryUpdateKnockdownDuration(uid, knockdownTime);
+                _stuns.TryCrawling(uid, knockdownTime);
                 _throwing.TryThrow(uid, direction, physics, Transform(uid), _projQuery, direction.Length(), playSound: false);
             }
             else

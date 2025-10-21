@@ -1,10 +1,13 @@
+// WL-Changes: Languages start
+using Content.Server._WL.Languages;
+using Content.Shared._WL.Languages.Components;
+// WL-Changes: Languages end
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.UI;
 using Content.Server.Disposal.Tube;
 using Content.Server.EUI;
 using Content.Server.Ghost.Roles;
-using Content.Server.Mind.Commands;
 using Content.Server.Mind;
 using Content.Server.Prayer;
 using Content.Server.Silicons.Laws;
@@ -16,7 +19,6 @@ using Content.Shared.Configurable;
 using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
-using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Components;
@@ -39,6 +41,7 @@ using System.Linq;
 using static Content.Shared.Configurable.ConfigurationComponent;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Humanoid;
+using Content.Shared._WL.Skills.Components; // Wl-Skills
 
 
 namespace Content.Server.Administration.Systems
@@ -70,6 +73,8 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly AdminFrozenSystem _freeze = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly SiliconLawSystem _siliconLawSystem = default!;
+
+        [Dependency] private readonly LanguagesSystem _languages = default!; //WL-Changes: Languages
 
         private readonly Dictionary<ICommonSession, List<EditSolutionsEui>> _openSolutionUis = new();
 
@@ -410,6 +415,22 @@ namespace Content.Server.Administration.Systems
                         Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Actions/actions_borg.rsi"), "state-laws"),
                     });
                 }
+
+                // open camera
+                args.Verbs.Add(new Verb()
+                {
+                    Priority = 10,
+                    Text = Loc.GetString("admin-verbs-camera"),
+                    Message = Loc.GetString("admin-verbs-camera-description"),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/vv.svg.192dpi.png")),
+                    Category = VerbCategory.Admin,
+                    Act = () =>
+                    {
+                        var ui = new AdminCameraEui(args.Target);
+                        _euiManager.OpenEui(ui, player);
+                    },
+                    Impact = LogImpact.Low
+                });
             }
         }
 
@@ -478,7 +499,7 @@ namespace Content.Server.Administration.Systems
                     Text = Loc.GetString("make-sentient-verb-get-data-text"),
                     Category = VerbCategory.Debug,
                     Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/sentient.svg.192dpi.png")),
-                    Act = () => MakeSentientCommand.MakeSentient(args.Target, EntityManager),
+                    Act = () => _mindSystem.MakeSentient(args.Target),
                     Impact = LogImpact.Medium
                 };
                 args.Verbs.Add(verb);
@@ -614,6 +635,49 @@ namespace Content.Server.Administration.Systems
                 args.Verbs.Add(verb);
             }
             // Wl-height end
+
+            // WL-Changes: Languages start
+            if (_adminManager.IsAdmin(player) && EntityManager.HasComponent<LanguagesComponent>(args.Target))
+            {
+                Verb verb = new()
+                {
+                    Text = Loc.GetString("Добавить язык"),
+                    Message = Loc.GetString("Добавляет язык в пул знания"),
+                    Category = VerbCategory.Debug,
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
+                    Act = () =>
+                    {
+                        _quickDialog.OpenDialog(player, "Добавление языка", "Язык", (string language) =>
+                        {
+                            _languages.AddLanguage(args.Target, language);
+                        });
+                    },
+                    Impact = LogImpact.Extreme,
+                    ConfirmationPopup = true
+                };
+                args.Verbs.Add(verb);
+            }
+            // WL-Changes: Languages end
+
+            // Wl-Skills-start
+            // Skills Management Verb
+            if (_adminManager.HasAdminFlag(player, AdminFlags.Admin) && EntityManager.HasComponent<SkillsComponent>(args.Target))
+            {
+                args.Verbs.Add(new Verb
+                {
+                    Text = Loc.GetString("skills-admin-verb-manage"),
+                    Category = VerbCategory.Admin,
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
+                    Act = () =>
+                    {
+                        var eui = new SkillsAdminEui(args.Target);
+                        _euiManager.OpenEui(eui, player);
+                        eui.StateDirty();
+                    },
+                    Impact = LogImpact.Medium
+                });
+            }
+            // Wl-Skills-end
         }
 
         #region SolutionsEui

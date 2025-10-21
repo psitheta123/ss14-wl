@@ -123,6 +123,7 @@
     - PartsStatic
     - AtmosStatic
     - CablesStatic
+    - PaperworkStatic
     - CargoStatic
     - MaterialsStatic
     - BasicChemistryStatic
@@ -209,7 +210,7 @@
     - Janitor
     - Instruments
     - Equipment
-    - FauxTiles
+    - Photo # WL-changes-photo
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityAmmo
@@ -257,7 +258,6 @@
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
-    - CircuitFloorsStatic
     dynamicPacks:
     - EngineeringBoards
     - CargoBoards
@@ -399,6 +399,10 @@
     - SecurityPracticeStatic
     - SecurityAmmoStatic
     - SecurityWeaponsStatic
+    # WL-changes-storage start
+    - ManualStorageSecurityStatic
+    - ManualStorageCommandStatic
+    # WL-changes-storage end
     dynamicPacks:
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
@@ -482,6 +486,7 @@
     - MedicalClothingStatic
     - EmptyMedkitsStatic
     - SurgeryStatic
+    - ManualStorageMedicalStatic # WL-changes-storage
     dynamicPacks:
     - Chemistry
   - type: Machine
@@ -690,7 +695,16 @@
     idleState: icon
     runningState: building
     staticPacks:
-    - FloorTilesStatic
+    - FloorDarkTilesStatic
+    - FloorSteelTilesStatic
+    - FloorWhiteTilesStatic
+    - FloorMaintsTilesStatic
+    - FloorWoodTilesStatic
+    - FloorConcreteTilesStatic
+    - CircuitFloorsStatic
+    - FloorMarbleTilesStatic
+    dynamicPacks:
+    - FauxTiles
   - type: MaterialStorage
     whitelist:
       tags:

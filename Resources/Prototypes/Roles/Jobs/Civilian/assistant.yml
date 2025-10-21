@@ -11,12 +11,14 @@
   - Male: фрилансер
   - Male: экипаж вне службы
   - Male: турист
+  - Male: психолог
   playTimeTracker: JobPassenger
   startingGear: PassengerGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-everyone
 #  access: # WL-Changes
 #  - Maintenance
+  bonusSkillPoints: 16 # WL-Skills / Why?
 
 - type: startingGear
   id: PassengerGear

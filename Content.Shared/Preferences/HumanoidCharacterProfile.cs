@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared._WL.Skills; // WL-Skills
 using Content.Shared.CCVar;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
@@ -32,6 +33,7 @@ namespace Content.Shared.Preferences
 
         //WL-Changes-start
         public const int MaxDescLength = 512 * 2; // WL-CharacterInfo: Increase
+        public const int MaxRecordLength = 4096; // WL-Records
 
         [DataField]
         private Dictionary<string, string> _jobSubnames = new();
@@ -160,7 +162,11 @@ namespace Content.Shared.Preferences
             Dictionary<string, RoleLoadout> loadouts,
 
             //WL-Changes-start
-            Dictionary<string, bool> jobUnblockings
+            Dictionary<string, bool> jobUnblockings,
+            string medicalRecord, // WL-Records
+            string securityRecord, // WL-Records
+            string employmentRecord, // WL-Records
+            Dictionary<string, Dictionary<byte, int>> skills // WL-Skills
             //WL-Changes-end
             )
         {
@@ -185,6 +191,11 @@ namespace Content.Shared.Preferences
             _jobSubnames = jobSubnames;
 
             _jobUnblockings = jobUnblockings;
+
+            MedicalRecord = medicalRecord; // WL-Records
+            SecurityRecord = securityRecord; // WL-Records
+            EmploymentRecord = employmentRecord; // WL-Records
+            Skills = skills; // WL-Skills
             //WL-Changes-end
 
             var hasHighPrority = false;
@@ -222,7 +233,11 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
-                new(other.JobUnblockings)) // WL-Heigh
+                new(other.JobUnblockings), // WL-Heigh
+                other.MedicalRecord, // WL-Records
+                other.SecurityRecord, // WL-Records
+                other.EmploymentRecord, // WL-Records
+                other.Skills) // WL-Skills
         {
         }
 
@@ -318,9 +333,20 @@ namespace Content.Shared.Preferences
         //WL-Changes-start
         [DataField] public string OocText { get; private set; } = ""; // WL-OOCText
 
+        [DataField]
+        public string MedicalRecord { get; set; } = string.Empty;
+
+        [DataField]
+        public string SecurityRecord { get; set; } = string.Empty;
+
+        [DataField]
+        public string EmploymentRecord { get; set; } = string.Empty;
+
         [DataField("height")] public int Height { get; private set; } = 165; // WL-Height
         public IReadOnlyDictionary<string, string> JobSubnames => _jobSubnames; //WL-changes
         public IReadOnlyDictionary<string, bool> JobUnblockings => _jobUnblockings;
+
+        [DataField] public Dictionary<string, Dictionary<byte, int>> Skills { get; set; } = new(); // WL-Skills
         //WL-Changes-end
 
         public HumanoidCharacterProfile WithName(string name)
@@ -339,6 +365,23 @@ namespace Content.Shared.Preferences
             return new(this) { OocText = oocText };
         }
         // WL-OOCText-End
+
+        // WL-Records-Start
+        public HumanoidCharacterProfile WithMedicalRecord(string record)
+        {
+            return new(this) { MedicalRecord = record };
+        }
+
+        public HumanoidCharacterProfile WithSecurityRecord(string record)
+        {
+            return new(this) { SecurityRecord = record };
+        }
+
+        public HumanoidCharacterProfile WithEmploymentRecord(string record)
+        {
+            return new(this) { EmploymentRecord = record };
+        }
+        // WL-Records-End
 
         public HumanoidCharacterProfile WithAge(int age)
         {
@@ -432,6 +475,22 @@ namespace Content.Shared.Preferences
                 _jobUnblockings = dict
             };
         }
+
+        public HumanoidCharacterProfile WithSkill(string jobName, byte skillKey, int level)
+        {
+            var newSkills = new Dictionary<string, Dictionary<byte, int>>(Skills);
+            if (!newSkills.TryGetValue(jobName, out var jobSkills))
+            {
+                jobSkills = new Dictionary<byte, int>();
+                newSkills[jobName] = jobSkills;
+            }
+
+            var newJobSkills = new Dictionary<byte, int>(jobSkills);
+            newJobSkills[skillKey] = level;
+            newSkills[jobName] = newJobSkills;
+
+            return new(this) { Skills = newSkills };
+        }
         //WL-Changes-end
 
         public HumanoidCharacterProfile WithJobPriority(ProtoId<JobPrototype> jobId, JobPriority priority)
@@ -505,7 +564,7 @@ namespace Content.Shared.Preferences
             // Category not found so dump it.
             TraitCategoryPrototype? traitCategory = null;
 
-            if (category != null && !protoManager.TryIndex(category, out traitCategory))
+            if (category != null && !protoManager.Resolve(category, out traitCategory))
                 return new(this);
 
             var list = new HashSet<ProtoId<TraitPrototype>>(_traitPreferences) { traitId };
@@ -570,6 +629,9 @@ namespace Content.Shared.Preferences
             if (OocText != other.OocText) return false; // WL-OocText
             if (Sex != other.Sex) return false;
             if (FlavorText != other.FlavorText) return false; // WL-Changes
+            if (MedicalRecord != other.MedicalRecord) return false; // WL-Records
+            if (SecurityRecord != other.SecurityRecord) return false; // WL-Records
+            if (EmploymentRecord != other.EmploymentRecord) return false; // WL-Records
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
@@ -580,6 +642,24 @@ namespace Content.Shared.Preferences
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (!_jobSubnames.SequenceEqual(other._jobSubnames)) return false; // WL-JobSubnames
             if (!_jobUnblockings.SequenceEqual(other._jobUnblockings)) return false; // WL-Changes
+            // WL-Skills-start
+            if (Skills.Count != other.Skills.Count) return false;
+            foreach (var kv in Skills)
+            {
+                if (!other.Skills.TryGetValue(kv.Key, out var otherJobSkills))
+                    return false;
+
+                var jobSkills = kv.Value;
+                if (jobSkills.Count != otherJobSkills.Count)
+                    return false;
+
+                foreach (var inner in jobSkills)
+                {
+                    if (!otherJobSkills.TryGetValue(inner.Key, out var otherLevel) || otherLevel != inner.Value)
+                        return false;
+                }
+            }
+            // WL-Skills-end
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
@@ -674,6 +754,18 @@ namespace Content.Shared.Preferences
             var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex, sponsorPrototypes);
             var oocText = OocText.Length > MaxDescLength ? FormattedMessage.RemoveMarkup(OocText)[..MaxDescLength] : FormattedMessage.RemoveMarkup(OocText); // WL-OOCText
 
+            // WL-Records-Start
+            var medicalRecord = MedicalRecord.Length > MaxRecordLength
+                ? FormattedMessage.RemoveMarkupOrThrow(MedicalRecord)[..MaxRecordLength]
+                : FormattedMessage.RemoveMarkupOrThrow(MedicalRecord);
+            var securityRecord = SecurityRecord.Length > MaxRecordLength
+                ? FormattedMessage.RemoveMarkupOrThrow(SecurityRecord)[..MaxRecordLength]
+                : FormattedMessage.RemoveMarkupOrThrow(SecurityRecord);
+            var employmentRecord = EmploymentRecord.Length > MaxRecordLength
+                ? FormattedMessage.RemoveMarkupOrThrow(EmploymentRecord)[..MaxRecordLength]
+                : FormattedMessage.RemoveMarkupOrThrow(EmploymentRecord);
+            // WL-Records-End
+
             var prefsUnavailableMode = PreferenceUnavailable switch
             {
                 PreferenceUnavailableMode.StayInLobby => PreferenceUnavailableMode.StayInLobby,
@@ -718,15 +810,60 @@ namespace Content.Shared.Preferences
                          .Where(prototypeManager.HasIndex)
                          .ToList();
 
+            // WL-Skills-Start
+            var validSkills = new Dictionary<string, Dictionary<byte, int>>();
+            foreach (var (jobName, jobSkillDict) in Skills)
+            {
+                var validJobSkills = new Dictionary<byte, int>();
+                foreach (var (skillByte, level) in jobSkillDict)
+                {
+                    if (Enum.IsDefined(typeof(SkillType), skillByte))
+                    {
+                        var validLevel = Math.Clamp(level, 1, 4);
+                        validJobSkills[skillByte] = validLevel;
+                    }
+                }
+
+                foreach (SkillType skill in Enum.GetValues(typeof(SkillType)))
+                {
+                    var skillByte = (byte)skill;
+                    if (!validJobSkills.ContainsKey(skillByte))
+                    {
+                        validJobSkills[skillByte] = 1;
+                    }
+                }
+
+                validSkills[jobName] = validJobSkills;
+            }
+
+            if (validSkills.Count == 0)
+            {
+                var defaultSkills = new Dictionary<byte, int>();
+                foreach (SkillType skill in Enum.GetValues(typeof(SkillType)))
+                {
+                    defaultSkills[(byte)skill] = 1;
+                }
+
+                foreach (var job in _jobPriorities.Keys)
+                {
+                    validSkills[job.Id] = new Dictionary<byte, int>(defaultSkills);
+                }
+            }
+            // WL-Skills-End
+
             Name = name;
             FlavorText = flavortext;
             OocText = oocText; // WL-OOCText
+            MedicalRecord = medicalRecord; // WL-Records
+            SecurityRecord = securityRecord; // WL-Records
+            EmploymentRecord = employmentRecord; // WL-Records
             Age = age;
             Height = height; // WL-Height
             Sex = sex;
             Gender = gender;
             Appearance = appearance;
             SpawnPriority = spawnPriority;
+            Skills = validSkills; // WL-Skills
 
             _jobPriorities.Clear();
 
@@ -760,6 +897,9 @@ namespace Content.Shared.Preferences
                     continue;
                 }
 
+                // This happens after we verify the prototype exists
+                // These values are set equal in the database and we need to make sure they're equal here too!
+                loadouts.Role = roleName;
                 loadouts.EnsureValid(this, session, collection);
             }
 
@@ -791,7 +931,7 @@ namespace Content.Shared.Preferences
                 }
 
                 // No category so dump it.
-                if (!protoManager.TryIndex(traitProto.Category, out var category))
+                if (!protoManager.Resolve(traitProto.Category, out var category))
                     continue;
 
                 var existing = groups.GetOrNew(category.ID);
@@ -830,10 +970,17 @@ namespace Content.Shared.Preferences
             var namingSystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<NamingSystem>();
             return namingSystem.GetName(species, gender);
         }
+        public bool Equals(HumanoidCharacterProfile? other)
+        {
+            if (other is null)
+                return false;
+
+            return ReferenceEquals(this, other) || MemberwiseEquals(other);
+        }
 
         public override bool Equals(object? obj)
         {
-            return ReferenceEquals(this, obj) || obj is HumanoidCharacterProfile other && Equals(other);
+            return obj is HumanoidCharacterProfile other && Equals(other);
         }
 
         public override int GetHashCode()
@@ -858,6 +1005,23 @@ namespace Content.Shared.Preferences
             hashCode.Add(_jobUnblockings);
             hashCode.Add(Height);
             hashCode.Add(OocText);
+            hashCode.Add(MedicalRecord);
+            hashCode.Add(SecurityRecord);
+            hashCode.Add(EmploymentRecord);
+            unchecked
+            {
+                var skillsHash = 0;
+                foreach (var jobKv in Skills.OrderBy(k => k.Key))
+                {
+                    var innerHash = 0;
+                    foreach (var sk in jobKv.Value.OrderBy(k => k.Key))
+                    {
+                        innerHash = HashCode.Combine(innerHash, sk.Key.GetHashCode(), sk.Value.GetHashCode());
+                    }
+                    skillsHash = HashCode.Combine(skillsHash, jobKv.Key.GetHashCode(), innerHash);
+                }
+                hashCode.Add(skillsHash);
+            }
             //WL-Changes-end
 
             return hashCode.ToHashCode();

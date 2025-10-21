@@ -5,7 +5,7 @@
   playTimeTracker: JobResearchDirector
   subnames:
   - Male: директор исследований
-  - Male: заведующий лабораторией
+  - Male: директор лаборатории
   requirements:
     - !type:DepartmentTimeRequirement
       department: Science
@@ -36,6 +36,14 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  # WL-Skills-start
+  bonusSkillPoints: 8
+  defaultSkills:
+    Bureaucracy: 2
+    IT: 2
+    ComplexDevices: 3
+    Science: 3
+  # WL-Skills-end
 
 - type: startingGear
   id: ResearchDirectorGear
@@ -56,4 +64,4 @@
     mask: ClothingMaskGas
     neck: ClothingNeckCloakRd
     outerClothing: ClothingOuterCoatRD
-    gloves: ClothingHandsGlovesColorPurple
+    gloves: ClothingHandsGlovesRNDhands # WL-Changes: Resprite Day

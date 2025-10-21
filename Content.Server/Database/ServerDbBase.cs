@@ -29,7 +29,6 @@ namespace Content.Server.Database
     public abstract class ServerDbBase
     {
         private readonly ISawmill _opsLog;
-
         public event Action<DatabaseNotification>? OnNotificationReceived;
 
         /// <param name="opsLog">Sawmill to trace log database operations to.</param>
@@ -107,6 +106,7 @@ namespace Content.Server.Database
                 //WL-Changes-start
                 .Include(p => p.Profiles).ThenInclude(h => h.JobSubnames)
                 .Include(p => p.Profiles).ThenInclude(h => h.JobUnblockings)
+                .Include(p => p.Profiles).ThenInclude(h => h.JobSkills)
                 //WL-Changes-end
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
@@ -167,6 +167,7 @@ namespace Content.Server.Database
                 //WL-Changes-start
                 .Include(p => p.JobSubnames)
                 .Include(p => p.JobUnblockings)
+                .Include(p => p.JobSkills)
                 //WL-Changes-end
                 .Include(p => p.Antags)
                 .Include(p => p.Traits)
@@ -273,6 +274,7 @@ namespace Content.Server.Database
             //WL-Changes-start
             var jobSubnames = profile.JobSubnames.ToDictionary(x => x.JobName, x => x.Subname);
             var jobUnblockings = profile.JobUnblockings.ToDictionary(k => k.JobName, v => v.ForceUnblocked);
+            var jobSkills = profile.JobSkills.ToDictionary(js => js.JobName, js => js.Skills);
             //WL-Changes-end
 
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
@@ -362,7 +364,11 @@ namespace Content.Server.Database
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts,
-                jobUnblockings
+                jobUnblockings,
+                profile.MedicalRecord, // WL-Records
+                profile.SecurityRecord, // WL-Records
+                profile.EmploymentRecord, // WL-Records
+                jobSkills // WL-Skills
             );
         }
 
@@ -380,6 +386,9 @@ namespace Content.Server.Database
             profile.CharacterName = humanoid.Name;
             profile.FlavorText = humanoid.FlavorText;
             profile.OocText = humanoid.OocText; // WL-OOCText
+            profile.MedicalRecord = humanoid.MedicalRecord; // WL-Records
+            profile.SecurityRecord = humanoid.SecurityRecord; // WL-Records
+            profile.EmploymentRecord = humanoid.EmploymentRecord; // WL-Records
             profile.Species = humanoid.Species;
             profile.Voice = humanoid.Voice; // Corvax-TTS
             profile.Age = humanoid.Age;
@@ -395,7 +404,18 @@ namespace Content.Server.Database
             profile.SpawnPriority = (int) humanoid.SpawnPriority;
             profile.Markings = markings;
             profile.Slot = slot;
-            profile.PreferenceUnavailable = (DbPreferenceUnavailableMode) humanoid.PreferenceUnavailable;
+            profile.PreferenceUnavailable = (DbPreferenceUnavailableMode)humanoid.PreferenceUnavailable;
+            // WL-Skills-start
+            profile.JobSkills.Clear();
+            foreach (var jobSkill in humanoid.Skills)
+            {
+                profile.JobSkills.Add(new ProfileJobSkills
+                {
+                    JobName = jobSkill.Key,
+                    Skills = jobSkill.Value
+                });
+            }
+            // WL-Skills-end
 
             profile.Jobs.Clear();
             profile.Jobs.AddRange(
@@ -1484,7 +1504,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 ban.LastEditedAt,
                 ban.ExpirationTime,
                 ban.Hidden,
-                new [] { ban.RoleId.Replace(BanManager.JobPrefix, null) },
+                new [] { ban.RoleId.Replace(BanManager.PrefixJob, null).Replace(BanManager.PrefixAntag, null) },
                 MakePlayerRecord(unbanningAdmin),
                 ban.Unban?.UnbanTime);
         }
@@ -1784,7 +1804,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     NormalizeDatabaseTime(firstBan.LastEditedAt),
                     NormalizeDatabaseTime(firstBan.ExpirationTime),
                     firstBan.Hidden,
-                    banGroup.Select(ban => ban.RoleId.Replace(BanManager.JobPrefix, null)).ToArray(),
+                    banGroup.Select(ban => ban.RoleId.Replace(BanManager.PrefixJob, null).Replace(BanManager.PrefixAntag, null)).ToArray(),
                     MakePlayerRecord(unbanningAdmin),
                     NormalizeDatabaseTime(firstBan.Unban?.UnbanTime)));
             }

@@ -1,0 +1,69 @@
+- type: job
+  id: SeniorOfficer
+  name: job-name-senior-officer
+  description: job-description-senior-officer
+  playTimeTracker: JobSeniorOfficer
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobWarden
+      time: 21600 #6 hrs
+    - !type:RoleTimeRequirement
+      role: JobDetective
+      time: 7200 #2 hrs
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 21600 #6 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 216000 # 60 hrs
+      # WL-Changes-start
+    - !type:AgeRequirement
+      minAge: 24
+      # WL-Changes-end
+  weight: 9
+  startingGear: SeniorOfficerGear
+  icon: "JobIconSeniorOfficer"
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Service
+  - External
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  # WL-Skills-start
+  bonusSkillPoints: 8
+  defaultSkills:
+    Bureaucracy: 2
+    Eva: 3
+    Piloting: 2
+    Forensics: 2
+    Combat: 3
+    Weapons: 3
+  # WL-Skills-end
+
+- type: startingGear
+  id: SeniorOfficerGear
+  equipment:
+    shoes: ClothingShoesBootsCombatFilled
+    eyes: ClothingEyesGlassesSecurity
+    id: SeniorOfficerPDA
+    ears: ClothingHeadsetSecurity
+    pocket1: WeaponPistolMk58
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+
+- type: chameleonOutfit
+  id: SeniorOfficerChameleonOutfit
+  job: SeniorOfficer
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBeretSecurity
+    eyes: ClothingEyesGlassesSecurity
+    mask: ClothingMaskGasSecurity
+    gloves: ClothingHandsGlovesColorBlack

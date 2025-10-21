@@ -874,6 +874,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("char_name");
 
+                    b.Property<string>("EmploymentRecord")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("employment_record");
+
                     b.Property<string>("EyeColor")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -917,6 +922,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("jsonb")
                         .HasColumnName("markings");
 
+                    b.Property<string>("MedicalRecord")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("medical_record");
+
                     b.Property<string>("OocText")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -929,6 +939,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Property<int>("PreferenceUnavailable")
                         .HasColumnType("INTEGER")
                         .HasColumnName("pref_unavailable");
+
+                    b.Property<string>("SecurityRecord")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("security_record");
 
                     b.Property<string>("Sex")
                         .IsRequired()
@@ -968,6 +983,36 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .IsUnique();
 
                     b.ToTable("profile", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.ProfileJobSkills", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("profile_job_skills_id");
+
+                    b.Property<string>("JobName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("job_name");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("profile_id");
+
+                    b.Property<string>("Skills")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("skills");
+
+                    b.HasKey("Id")
+                        .HasName("PK_profile_job_skills");
+
+                    b.HasIndex("ProfileId", "JobName")
+                        .IsUnique();
+
+                    b.ToTable("profile_job_skills", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.ProfileLoadout", b =>
@@ -1803,6 +1848,18 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Preference");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.ProfileJobSkills", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithMany("JobSkills")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_profile_job_skills_profile_profile_id");
+
+                    b.Navigation("Profile");
+                });
+
             modelBuilder.Entity("Content.Server.Database.ProfileLoadout", b =>
                 {
                     b.HasOne("Content.Server.Database.ProfileLoadoutGroup", "ProfileLoadoutGroup")
@@ -2119,6 +2176,8 @@ namespace Content.Server.Database.Migrations.Sqlite
             modelBuilder.Entity("Content.Server.Database.Profile", b =>
                 {
                     b.Navigation("Antags");
+
+                    b.Navigation("JobSkills");
 
                     b.Navigation("JobSubnames");
 

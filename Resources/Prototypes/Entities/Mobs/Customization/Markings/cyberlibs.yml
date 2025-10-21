@@ -1,4 +1,5 @@
-﻿- type: marking
+# Bishop
+- type: marking
   id: CyberlimbRArmBishop
   bodyPart: RArm
   markingCategory: Arms

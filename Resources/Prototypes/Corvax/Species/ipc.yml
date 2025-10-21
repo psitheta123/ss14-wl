@@ -2,7 +2,7 @@
   id: Ipc
   name: species-name-Ipc
   roundStart: true
-#  sponsorOnly: true # Corvax-Sponsors
+  sponsorOnly: false # Corvax-Sponsors
   prototype: MobIpc
   sprites: MobIpcSprites
   defaultSkinTone: "#eb943d"
@@ -17,6 +17,7 @@
   minHeight: 120
   maxHeight: 230
   # WL-Change-end
+  minAge: 0
 
 - type: speciesBaseSprites
   id: MobIpcSprites
@@ -54,7 +55,7 @@
     Snout:
       points: 1
       required: false
-      defaultMarkings: [ OrangeS ]
+      defaultMarkings: [ IpcOrangeS ]
     HeadTop:
       points: 2
       required: true

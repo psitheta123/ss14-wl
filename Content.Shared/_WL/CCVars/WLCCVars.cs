@@ -74,7 +74,7 @@ public sealed class WLCVars
     /// Работает(включен) ли ChatGptManager на данный момент.
     /// </summary>
     public static readonly CVarDef<bool> IsGptEnabled =
-        CVarDef.Create("gpt.enabled", true, CVar.REPLICATED);
+        CVarDef.Create("gpt.enabled", false, CVar.REPLICATED);
 
     /// <summary>
     /// Чат-модель, которая будет использоваться для отправки запросов.
@@ -138,4 +138,20 @@ public sealed class WLCVars
     /// </summary>
     public static readonly CVarDef<int> VoteShuttleTimer =
         CVarDef.Create("vote.evacuation_shuttle_vote_time", 40, CVar.SERVERONLY);
+
+    /*
+     * Ic
+     */
+
+    public static readonly CVarDef<int> MaxDynamicTextLength =
+        CVarDef.Create("ic.dynamic_text_length", 1024, CVar.SERVER | CVar.REPLICATED);
+
+    /*
+     * Skills
+     */
+    /// <summary>
+    /// ГАНС! ЕСЛИ ОНИ ВДРУГ НЕ НУЖНЫ ТО ПЕРЕКЛЮЧИ ПЕРЕКЛЮЧАТЕЛЬ!!!
+    /// </summary>
+    public static readonly CVarDef<bool> SkillsEnabled =
+        CVarDef.Create("skills.enabled", true, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 }

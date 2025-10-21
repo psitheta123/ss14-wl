@@ -5,7 +5,7 @@
   mapPath: /Maps/_WL/wl_kolter.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 15
+  minPlayers: 0
   stations:
     CorvaxKolter:
       stationProto: StandardNanotrasenStation
@@ -18,41 +18,54 @@
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_WL/Shuttles/emergency_wlkolter.yml
         - type: StationJobs
-          availableJobs: # Total jobs on the station: 53
-            # command: 2
+          availableJobs:
+
+            # command
             Captain: [ 1, 1 ]
             IAA: [ 1, 1 ]
-            # cargo: 5
+            Adjutant: [ 1, 1 ]
             Quartermaster: [ 1, 1 ]
+            ChiefEngineer: [ 1, 1 ]
+            ChiefMedicalOfficer: [ 1, 1 ]
+            ResearchDirector: [ 1, 1 ]
+            HeadOfSecurity: [ 1, 1 ]
+            HeadOfPersonnel: [ 1, 1 ]
+
+            # cargo
             SalvageSpecialist: [ 2, 3 ]
             CargoTechnician: [ 2, 2 ]
-            # engineering: 7
-            ChiefEngineer: [ 1, 1 ]
+
+            # engineering
             AtmosphericTechnician: [ 2, 2 ]
+            SeniorEngineer: [ 1, 1 ]
             StationEngineer: [ 2, 2 ]
             TechnicalAssistant: [ 1, 1 ]
-            # medical: 9
-            ChiefMedicalOfficer: [ 1, 1 ]
+
+            # medical
+            SeniorPhysician: [ 1, 1 ]
             MedicalDoctor: [ 3, 3 ]
             MedicalIntern: [ 1, 1 ]
             Paramedic: [1, 1]
             Chemist: [ 2, 2 ]
             Psychologist: [ 1, 1 ]
-            # science: 5
-            ResearchDirector: [ 1, 1 ]
+
+            # science
+            SeniorResearcher: [ 1, 1 ]
             Scientist: [ 3, 3 ]
             ResearchAssistant: [ 1, 1 ]
-            # security: 8
-            HeadOfSecurity: [ 1, 1 ]
+
+            # security
             Warden: [ 1, 1 ]
-            SecurityOfficer: [ 2, 2 ]
-            SecurityCadet: [ 1, 1 ]
+            SeniorOfficer: [ 1, 1 ]
+            SecurityOfficer: [ 3, 3 ]
+            SecurityCadet: [ 2, 2 ]
             Detective: [ 1, 1 ]
             Pilot: [ 1, 1 ]
             Brigmedic: [1, 1 ]
-            # service: 15
-            HeadOfPersonnel: [ 1, 1 ]
+
+            # service
             Bartender: [ 1, 1 ]
+            Boxer: [ 1, 1 ]
             Botanist: [ 2, 2 ]
             Chaplain: [ 1, 1 ]
             Chef: [ 1, 1 ]
@@ -64,6 +77,7 @@
             Reporter: [ 2, 2 ]
             ServiceWorker: [ 2, 2 ]
             Passenger: [ -1, -1 ]
-            # silicon: 2
+
+            # silicon
             StationAi: [ 1, 1 ]
             Borg: [ 1, 1 ]

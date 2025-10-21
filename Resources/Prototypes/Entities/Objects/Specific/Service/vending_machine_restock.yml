@@ -136,6 +136,7 @@
     - WinterDrobeInventory
     - CuraDrobeInventory
     - CorpDrobeInventory
+    - GothicOMatInventory # Corvax-WL
   - type: Sprite
     layers:
     - state: base
@@ -282,6 +283,8 @@
     canRestock:
     - NanoMedInventory
     - NanoMedPlusInventory
+    - NanoMedCivilianInventory
+    - NanoMedCivilianWallInventory
   - type: Sprite
     layers:
     - state: base

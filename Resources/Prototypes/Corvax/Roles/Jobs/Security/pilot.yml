@@ -29,15 +29,23 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  # WL-Skills-start
+  bonusSkillPoints: 6
+  defaultSkills:
+    Bureaucracy: 2
+    Eva: 3
+    Piloting: 3
+    Forensics: 2
+    Combat: 3
+    Weapons: 3
+  # WL-Skills-end
 
 - type: startingGear
   id: PilotGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
-    head: ClothingHeadHatBeretSecurity
     id: PilotPDA
     ears: ClothingHeadsetSecurity
-    neck: ClothingNeckTieRed
     pocket1: WeaponPistolMk58
   storage:
     back:

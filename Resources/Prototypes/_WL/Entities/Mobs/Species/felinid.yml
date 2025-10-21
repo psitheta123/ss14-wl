@@ -55,6 +55,13 @@
     sprite: Mobs/Species/Human/parts.rsi
     state: full
   - type: AddHeightItem
+  - type: Languages
+    speaking:
+      - Translate
+      - OldEarth
+    understood:
+      - Translate
+      - OldEarth
 
 - type: entity
   save: false

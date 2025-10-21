@@ -198,16 +198,16 @@
   description: Beep boop borp!
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/robohands.rsi
+    sprite: _WL/Clothing/Hands/Gloves/robohands.rsi # WL-Changes: Resprite Day
   - type: Clothing
-    sprite: Clothing/Hands/Gloves/robohands.rsi
+    sprite: _WL/Clothing/Hands/Gloves/robohands.rsi # WL-Changes: Resprite Day
   - type: Fiber
     fiberMaterial: fibers-leather
     fiberColor: fibers-black
   - type: FingerprintMask
 
 - type: entity
-  parent: [ClothingHandsBase, BaseToggleClothing, BaseMajorContraband]
+  parent: [ClothingHandsBase, BaseToggleClothing, BaseHighlyIllegalContraband]
   id: ClothingHandsGlovesSpaceNinja
   name: space ninja gloves
   description: These black nano-enhanced gloves insulate from electricity and provide fire resistance.
@@ -241,6 +241,7 @@
     - components:
       - type: BatteryDrainer
       - type: StunProvider
+        cooldown: 10
         noPowerPopup: ninja-no-power
         whitelist:
           components:

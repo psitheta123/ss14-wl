@@ -45,7 +45,7 @@ ent-SpawnPointMusician = музыкант
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointBoxer = боксёр
     .desc = { ent-SpawnPointJobBase.desc }
-ent-SpawnPointBorg = киборг
+ent-SpawnPointBorg = борг
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointCaptain = капитан
     .desc = { ent-SpawnPointJobBase.desc }
@@ -93,7 +93,9 @@ ent-SpawnPointERTJanitor = уборщик ОБР
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointReporter = репортёр
     .desc = { ent-SpawnPointJobBase.desc }
-ent-SpawnPointPsychologist = психолог
+# WL-change-psych
+ent-SpawnPointPsychologist = психотерапевт
     .desc = { ent-SpawnPointJobBase.desc }
+# WL-change-psych
 ent-SpawnPointZookeeper = зоотехник
     .desc = { ent-SpawnPointJobBase.desc }

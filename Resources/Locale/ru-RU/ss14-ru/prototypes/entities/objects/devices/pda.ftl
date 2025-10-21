@@ -127,8 +127,10 @@ ent-ERTSecurityPDA = КПК офицера безопасности ОБР
     .desc = Красный значит мощный. На боку нацарапаны метки подсчёта.
 ent-CBURNPDA = КПК РХБЗЗ
     .desc = Пахнет гнилой плотью.
-ent-PsychologistPDA = КПК психолога
+# WL-change-psych-start
+ent-PsychologistPDA = КПК психотерапевта
     .desc = Выглядит безупречно чистым.
+# WL-change-psych-end
 ent-ReporterPDA = КПК репортёра
     .desc = Пахнет свежеотпечатанной газетой.
 ent-ZookeeperPDA = КПК зоотехника
@@ -144,10 +146,12 @@ ent-CluwnePDA = КПК клувеня
     .suffix = Неснимаемый
 ent-SeniorEngineerPDA = КПК ведущего инженера
     .desc = Похоже, что его несколько раз разбирали и собирали.
-ent-SeniorResearcherPDA = КПК ведущего учёного
+# WL-Changes: Roles rename start
+ent-SeniorResearcherPDA = КПК заведующего лабораторией
     .desc = Похоже, он пережил годы химических ожогов и взрывов.
-ent-SeniorPhysicianPDA = КПК ведущего врача
+ent-SeniorPhysicianPDA = КПК дежурного врача
     .desc = Слабо пахнет железом и химикатами.
+# WL-Changes: Roles rename end
 ent-SeniorOfficerPDA = КПК инструктора СБ
     .desc = Побит, помят, поломан, практически не пригоден для использования.
 ent-PiratePDA = КПК пирата
@@ -155,7 +159,7 @@ ent-PiratePDA = КПК пирата
 # Corvax-HiddenDesc-Start
 ent-SyndiAgentPDA = медицинский кроваво-красный КПК
     .desc = Смотря на этот КПК, ваше сердцебиение учащается... словно его владелец проводил немыслимые и ужасные медицинские эксперименты.
-    .suffix = КПК фельдшера Синдиката
+    .suffix = КПК медика Синдиката
 # Corvax-HiddenDesc-End
 ent-ChameleonPDA = КПК пассажира
     .desc = Почему он не серый?

@@ -17,6 +17,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._WL.Skills.Components; // WL-Skills
+using Content.Shared._WL.Skills; // WL-Skills
 
 namespace Content.Server.Cloning;
 
@@ -24,7 +26,7 @@ namespace Content.Server.Cloning;
 ///     System responsible for making a copy of a humanoid's body.
 ///     For the cloning machines themselves look at CloningPodSystem, CloningConsoleSystem and MedicalScannerSystem instead.
 /// </summary>
-public sealed partial class CloningSystem : EntitySystem
+public sealed partial class CloningSystem : SharedCloningSystem
 {
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
@@ -36,6 +38,7 @@ public sealed partial class CloningSystem : EntitySystem
     [Dependency] private readonly SharedStorageSystem _storage = default!;
     [Dependency] private readonly SharedSubdermalImplantSystem _subdermalImplant = default!;
     [Dependency] private readonly NameModifierSystem _nameMod = default!;
+    [Dependency] private readonly SharedSkillsSystem _skills = default!; // WL-Skills
 
     /// <summary>
     ///     Spawns a clone of the given humanoid mob at the specified location or in nullspace.
@@ -43,13 +46,13 @@ public sealed partial class CloningSystem : EntitySystem
     public bool TryCloning(EntityUid original, MapCoordinates? coords, ProtoId<CloningSettingsPrototype> settingsId, [NotNullWhen(true)] out EntityUid? clone)
     {
         clone = null;
-        if (!_prototype.TryIndex(settingsId, out var settings))
+        if (!_prototype.Resolve(settingsId, out var settings))
             return false; // invalid settings
 
         if (!TryComp<HumanoidAppearanceComponent>(original, out var humanoid))
             return false; // whatever body was to be cloned, was not a humanoid
 
-        if (!_prototype.TryIndex(humanoid.Species, out var speciesPrototype))
+        if (!_prototype.Resolve(humanoid.Species, out var speciesPrototype))
             return false; // invalid species
 
         var attemptEv = new CloningAttemptEvent(settings);
@@ -61,6 +64,8 @@ public sealed partial class CloningSystem : EntitySystem
         _humanoidSystem.CloneAppearance(original, clone.Value);
 
         CloneComponents(original, clone.Value, settings);
+
+        CopySkills(original, clone.Value); // WL-Skills
 
         // Add equipment first so that SetEntityName also renames the ID card.
         if (settings.CopyEquipment != null)
@@ -84,13 +89,7 @@ public sealed partial class CloningSystem : EntitySystem
         return true;
     }
 
-    /// <summary>
-    ///     Copy components from one entity to another based on a CloningSettingsPrototype.
-    /// </summary>
-    /// <param name="original">The orignal Entity to clone components from.</param>
-    /// <param name="clone">The target Entity to clone components to.</param>
-    /// <param name="settings">The clone settings prototype containing the list of components to clone.</param>
-    public void CloneComponents(EntityUid original, EntityUid clone, CloningSettingsPrototype settings)
+    public override void CloneComponents(EntityUid original, EntityUid clone, CloningSettingsPrototype settings)
     {
         var componentsToCopy = settings.Components;
         var componentsToEvent = settings.EventComponents;
@@ -128,12 +127,23 @@ public sealed partial class CloningSystem : EntitySystem
             }
 
             // If the original does not have the component, then the clone shouldn't have it either.
-            RemComp(clone, componentRegistration.Type);
+            if (!HasComp(original, componentRegistration.Type))
+                RemComp(clone, componentRegistration.Type);
         }
 
         var cloningEv = new CloningEvent(settings, clone);
         RaiseLocalEvent(original, ref cloningEv); // used for datafields that cannot be directly copied using CopyComp
     }
+
+    // WL-Skills-start
+    /// <summary>
+    ///     Copies all skills from the original entity to the clone.
+    /// </summary>
+    public void CopySkills(EntityUid original, EntityUid clone)
+    {
+        _skills.CopySkills(original, clone);
+    }
+    // WL-Skills-end
 
     /// <summary>
     ///     Copies the equipment the original has to the clone.
