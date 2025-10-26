@@ -1,6 +1,7 @@
 using Content.Server.Ghost;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
+using Robust.Shared.Timing; //WL-Changes-change-SpawnTimer
 
 namespace Content.Server.Light.EntitySystems;
 
@@ -33,7 +34,7 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
         light.LastGhostBlink = time;
 
         ToggleBlinkingLight(uid, light, true);
-        uid.SpawnTimer(light.GhostBlinkingTime, () =>
+        Timer.Spawn(light.GhostBlinkingTime, () => //WL-Changes-change-SpawnTimer // uid.SpawnTimer -> Timer.Spawn
         {
             ToggleBlinkingLight(uid, light, false);
         });
