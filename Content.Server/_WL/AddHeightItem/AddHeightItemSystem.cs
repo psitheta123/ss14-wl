@@ -28,25 +28,15 @@ namespace Content.Server._WL.AddHeightItem
 
             if (speciesProto.MaxItemHeight >= humanoid.Height)
             {
-                if (!EntityManager.HasComponent<ItemComponent>(uid) &&
-                    !EntityManager.HasComponent<MultiHandedItemComponent>(uid) &&
-                    !EntityManager.HasComponent<CanEscapeInventoryComponent>(uid))
-                {
-                    var size = "Ginormous";
+                var size1 = "Ginormous";
 
-                    var itemComponent = new ItemComponent();
-                    EntityManager.AddComponent(uid, itemComponent);
-                    _item.SetSize(uid, size, itemComponent);
+                var item = EnsureComp<ItemComponent>(uid);
+                _item.SetSize(uid, size1, item);
 
-                    var multiHandedItem = new MultiHandedItemComponent();
-                    EntityManager.AddComponent(uid, multiHandedItem);
+                EnsureComp<MultiHandedItemComponent>(uid);
 
-                    var canEscapeInventory = new CanEscapeInventoryComponent
-                    {
-                        BaseResistTime = 1f
-                    };
-                    EntityManager.AddComponent(uid, canEscapeInventory);
-                }
+                var escape = EnsureComp<CanEscapeInventoryComponent>(uid);
+                escape.BaseResistTime = 1f;
             }
         }
     }
