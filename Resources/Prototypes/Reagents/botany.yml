@@ -224,13 +224,8 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Rat ]
+          type: [ Rat, Cischi ] # Cischi
           inverted: true
-# WL species start
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
 # WL species end
         - !type:ReagentCondition
           reagent: Ammonia
@@ -243,18 +238,8 @@
         probability: 0.12
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Rat, Vox ]
+          type: [ Rat, Vox, Cischi ] # Cischi
           inverted: true
-# WL species start
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-# WL species end
-        - !type:OrganType
-          type: Vox
-          shouldHave: false
-        - !type:ReagentThreshold
         - !type:ReagentCondition
           reagent: Ammonia
           min: 0.8

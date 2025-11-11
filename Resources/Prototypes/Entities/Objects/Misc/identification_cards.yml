@@ -52,10 +52,10 @@
   - type: Sprite
     layers:
     - state: gold
-    - state: stripe_top
-      color: "#1b67a5"
-    - state: stripe_bottom
-      color: "#0e4069"
+    # - state:stripe_top #WL-Resprite
+      # color: "#1b67a5"
+    # - state:stripe_bottom #WL-Resprite
+      # color: "#0e4069"
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Captain
@@ -80,10 +80,10 @@
   - type: Sprite
     layers:
     - state: silver
-    - state: stripe_top
-      color: &color-service-top "#639137"
-    - state: stripe_bottom
-      color: &color-service-bottom "#446326"
+    # - state:stripe_top #WL-Resprite
+      # color: &color-service-top "#639137"
+    # - state:stripe_bottom #WL-Resprite
+      # color: &color-service-bottom "#446326"
     - sprite: *icon-rsi
       offset: *icon-offset
       state: HeadOfPersonnel
@@ -100,10 +100,10 @@
   - type: Sprite
     layers:
     - state: silver
-    - state: stripe_top
-      color: &color-engineering-top "#ffa62b"
-    - state: stripe_bottom
-      color: &color-engineering-bottom "#bc5b00"
+    # - state:stripe_top #WL-Resprite
+      # color: &color-engineering-top "#ffa62b"
+    # - state:stripe_bottom #WL-Resprite
+      # color: &color-engineering-bottom "#bc5b00"
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ChiefEngineer
@@ -120,10 +120,10 @@
   - type: Sprite
     layers:
     - state: silver
-    - state: stripe_top
-      color: &color-medical-top "#68aed6"
-    - state: stripe_bottom
-      color: &color-medical-bottom "#325f7a"
+    # - state:stripe_top #WL-Resprite
+      # color: &color-medical-top "#68aed6"
+    # - state:stripe_bottom #WL-Resprite
+      # color: &color-medical-bottom "#325f7a"
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ChiefMedicalOfficer
@@ -140,10 +140,10 @@
   - type: Sprite
     layers:
     - state: silver
-    - state: stripe_top
-      color: &color-science-top "#a53aaa"
-    - state: stripe_bottom
-      color: &color-science-bottom "#652368"
+    # - state:stripe_top #WL-Resprite
+      # color: &color-science-top "#a53aaa"
+    # - state:stripe_bottom #WL-Resprite
+      # color: &color-science-bottom "#652368"
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ResearchDirector
@@ -160,10 +160,10 @@
   - type: Sprite
     layers:
     - state: silver
-    - state: stripe_top
-      color: &color-security-top "#cb0000"
-    - state: stripe_bottom
-      color: &color-security-bottom "#830000"
+    # - state:stripe_top #WL-Resprite
+      # color: &color-security-top "#cb0000"
+    # - state:stripe_bottom #WL-Resprite
+      # color: &color-security-bottom "#830000"
     - sprite: *icon-rsi
       offset: *icon-offset
       state: HeadOfSecurity
@@ -180,10 +180,10 @@
   - type: Sprite
     layers:
     - state: silver
-    - state: stripe_top
-      color: &color-supply-top "#b18644"
-    - state: stripe_bottom
-      color: &color-supply-bottom "#5b4523"
+    # - state:stripe_top #WL-Resprite
+      # color: &color-supply-top "#b18644"
+    # - state:stripe_bottom #WL-Resprite
+      # color: &color-supply-bottom "#5b4523"
     - sprite: *icon-rsi
       offset: *icon-offset
       state: QuarterMaster
@@ -202,10 +202,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-engineering-top
-    - state: stripe_bottom
-      color: *color-engineering-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-engineering-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-engineering-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: TechnicalAssistant
@@ -220,10 +220,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-engineering-top
-    - state: stripe_bottom
-      color: *color-engineering-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-engineering-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-engineering-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: StationEngineer
@@ -238,10 +238,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-engineering-top
-    - state: stripe_bottom
-      color: *color-engineering-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-engineering-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-engineering-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: AtmosphericTechnician
@@ -257,10 +257,10 @@
     sprite: Objects/Misc/id_cards.rsi #WL resprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-engineering-top
-    - state: stripe_bottom
-      color: *color-engineering-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-engineering-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-engineering-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SeniorEngineer
@@ -276,10 +276,10 @@
     sprite: Objects/Misc/id_cards.rsi #WL resprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-medical-top
-    - state: stripe_bottom
-      color: *color-medical-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-medical-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-medical-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: MedicalIntern
@@ -295,10 +295,10 @@
     sprite: Objects/Misc/id_cards.rsi #WL resprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-medical-top
-    - state: stripe_bottom
-      color: *color-medical-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-medical-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-medical-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: MedicalDoctor
@@ -314,10 +314,10 @@
     sprite: Objects/Misc/id_cards.rsi #WL resprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-medical-top
-    - state: stripe_bottom
-      color: *color-medical-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-medical-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-medical-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Paramedic
@@ -332,10 +332,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-medical-top
-    - state: stripe_bottom
-      color: *color-medical-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-medical-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-medical-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Chemist
@@ -350,10 +350,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-medical-top
-    - state: stripe_bottom
-      color: *color-medical-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-medical-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-medical-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Psychologist
@@ -368,10 +368,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-medical-top
-    - state: stripe_bottom
-      color: *color-medical-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-medical-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-medical-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SeniorPhysician
@@ -386,10 +386,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-science-top
-    - state: stripe_bottom
-      color: *color-science-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-science-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-science-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ResearchAssistant
@@ -404,10 +404,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-science-top
-    - state: stripe_bottom
-      color: *color-science-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-science-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-science-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Scientist
@@ -422,10 +422,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-science-top
-    - state: stripe_bottom
-      color: *color-science-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-science-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-science-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SeniorResearcher
@@ -440,10 +440,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-security-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-security-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SecurityCadet
@@ -458,10 +458,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-security-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-security-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SecurityOfficer
@@ -476,10 +476,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-security-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-security-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Warden
@@ -494,10 +494,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-security-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-security-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Detective
@@ -512,10 +512,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-security-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-security-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Brigmedic
@@ -528,10 +528,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-security-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-security-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SeniorOfficer
@@ -546,10 +546,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-service-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-service-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ServiceWorker
@@ -564,7 +564,7 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_clown
+    # - state:stripe_clown #WL-Resprite
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Clown
@@ -579,10 +579,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: "#2d2d2d"
-    - state: stripe_bottom
-      color: "#1d1d1d"
+    # - state:stripe_top #WL-Resprite
+      # color: "#2d2d2d"
+    # - state:stripe_bottom #WL-Resprite
+      # color: "#1d1d1d"
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Mime
@@ -597,10 +597,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: "#6f56b8"
-    - state: stripe_bottom
-      color: "#524089"
+    # - state:stripe_top #WL-Resprite
+      # color: "#6f56b8"
+    # - state:stripe_bottom #WL-Resprite
+      # color: "#524089"
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Musician
@@ -615,10 +615,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-service-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-service-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Chaplain
@@ -633,10 +633,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-service-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-service-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Janitor
@@ -651,10 +651,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-service-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-service-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Bartender
@@ -669,10 +669,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-service-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-service-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Bartender
@@ -691,10 +691,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-service-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-service-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Chef
@@ -709,10 +709,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-service-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-service-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Botanist
@@ -727,10 +727,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-service-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-service-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Librarian
@@ -745,10 +745,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-service-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-service-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Lawyer
@@ -763,10 +763,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-service-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-service-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Reporter
@@ -781,10 +781,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-service-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-service-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Boxer
@@ -799,10 +799,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-service-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-service-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Zookeeper
@@ -819,10 +819,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-supply-top
-    - state: stripe_bottom
-      color: *color-supply-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-supply-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-supply-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: CargoTechnician
@@ -837,10 +837,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-supply-top
-    - state: stripe_bottom
-      color: *color-supply-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-supply-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-supply-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ShaftMiner
@@ -895,10 +895,10 @@
   - type: Sprite
     layers:
     - state: default
-    - state: stripe_top
-      color: "#5dc574"
-    - state: stripe_bottom
-      color: "#3f9b53"
+    # - state:stripe_top #WL-Resprite
+      # color: "#5dc574"
+    # - state:stripe_bottom #WL-Resprite
+      # color: "#3f9b53"
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Cluwne
@@ -982,11 +982,11 @@
   components:
   - type: Sprite
     layers:
-    - state: black
-    - state: stripe_top
-      color: &color-syndicate-top "#e80c0c"
-    - state: stripe_bottom
-      color: &color-syndicate-bottom "#960606"
+    # - state:black #WL-Resprite
+    # - state:stripe_top #WL-Resprite
+      # color: &color-syndicate-top "#e80c0c"
+    # - state:stripe_bottom #WL-Resprite
+      # color: &color-syndicate-bottom "#960606"
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Syndicate
@@ -1004,11 +1004,11 @@
   components:
   - type: Sprite
     layers:
-    - state: black
-    - state: stripe_top
-      color: *color-syndicate-top
-    - state: stripe_bottom
-      color: *color-syndicate-bottom
+    # - state:black #WL-Resprite
+    # - state:stripe_top #WL-Resprite
+      # color: *color-syndicate-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-syndicate-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SyndicateOperative
@@ -1021,11 +1021,11 @@
   components:
   - type: Sprite
     layers:
-    - state: black
-    - state: stripe_top
-      color: *color-syndicate-top
-    - state: stripe_bottom
-      color: *color-syndicate-bottom
+    # - state:black #WL-Resprite
+    # - state:stripe_top #WL-Resprite
+      # color: *color-syndicate-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-syndicate-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SyndicateCorpsman
@@ -1037,11 +1037,11 @@
   components:
   - type: Sprite
     layers:
-    - state: black
-    - state: stripe_top
-      color: *color-syndicate-top
-    - state: stripe_bottom
-      color: *color-syndicate-bottom
+    # - state:black #WL-Resprite
+    # - state:stripe_top #WL-Resprite
+      # color: *color-syndicate-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-syndicate-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SyndicateCommander
@@ -1090,10 +1090,10 @@
   - type: Sprite
     layers:
     - state: centcom
-    - state: stripe_top
-      color: &color-centcomm-top "#134975"
-    - state: stripe_bottom
-      color: &color-centcomm-bottom "#0d304d"
+    # - state:stripe_top #WL-Resprite
+      # color: &color-centcomm-top "#134975"
+    # - state:stripe_bottom #WL-Resprite
+      # color: &color-centcomm-bottom "#0d304d"
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Nanotrasen
@@ -1110,10 +1110,10 @@
   - type: Sprite
     layers:
     - state: gold
-    - state: stripe_top
-      color: *color-centcomm-top
-    - state: stripe_bottom
-      color: *color-centcomm-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-centcomm-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-centcomm-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ERTLeader
@@ -1130,10 +1130,10 @@
   - type: Sprite
     layers:
     - state: centcom
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-service-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-service-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ERTChaplain
@@ -1150,10 +1150,10 @@
   - type: Sprite
     layers:
     - state: centcom
-    - state: stripe_top
-      color: *color-engineering-top
-    - state: stripe_bottom
-      color: *color-engineering-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-engineering-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-engineering-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ERTEngineer
@@ -1170,10 +1170,10 @@
   - type: Sprite
     layers:
     - state: centcom
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-service-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-service-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ERTJanitor
@@ -1190,10 +1190,10 @@
   - type: Sprite
     layers:
     - state: centcom
-    - state: stripe_top
-      color: *color-medical-top
-    - state: stripe_bottom
-      color: *color-medical-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-medical-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-medical-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ERTMedical
@@ -1210,10 +1210,10 @@
   - type: Sprite
     layers:
     - state: centcom
-    - state: stripe_top
-      color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-security-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-security-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ERTSecurity
@@ -1230,10 +1230,10 @@
   - type: Sprite
     layers:
     - state: centcom
-    - state: stripe_top
-      color: *color-centcomm-top
-    - state: stripe_bottom
-      color: *color-centcomm-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-centcomm-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-centcomm-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: DeathSquad
@@ -1249,10 +1249,10 @@
   - type: Sprite
     layers:
     - state: centcom
-    - state: stripe_top
-      color: *color-centcomm-top
-    - state: stripe_bottom
-      color: *color-centcomm-bottom
+    # - state:stripe_top #WL-Resprite
+      # color: *color-centcomm-top
+    # - state:stripe_bottom #WL-Resprite
+      # color: *color-centcomm-bottom
     - sprite: *icon-rsi
       offset: *icon-offset
       state: CBURN

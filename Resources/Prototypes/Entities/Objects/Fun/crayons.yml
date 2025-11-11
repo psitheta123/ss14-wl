@@ -22,7 +22,7 @@
         type: CrayonBoundUserInterface
   - type: Crayon
     capacity: 250 #WL-Changes: Crayons up
-  - type: Food
+  - type: Edible
     selectedState: like
   - type: LimitedCharges
     maxCharges: 250

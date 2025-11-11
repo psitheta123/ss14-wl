@@ -9,7 +9,7 @@
   - type: FlavorProfile
     flavors:
       - sweet
-  - type: Food
+  - type: Edible
     utensil:
       - Spoon
       - Fork

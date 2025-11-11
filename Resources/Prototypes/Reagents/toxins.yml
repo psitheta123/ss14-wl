@@ -19,13 +19,13 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -53,13 +53,13 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
         #Akula
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Animal
-          shouldHave: false
+          inverted: true
 # WL species end
         damage:
           types:
@@ -68,13 +68,13 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
         #Akula
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Animal
-          shouldHave: false
+          inverted: true
 # WL species end
         type: Local
         visualType: MediumCaution
@@ -87,11 +87,11 @@
         factor: 2
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
         #Akula
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Animal
           shouldHave: true
 # WL species end
@@ -125,13 +125,13 @@
 # WL species start
         conditions:
         # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic ]
+          inverted: true
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
       - !type:HealthChange
         conditions:
@@ -140,13 +140,13 @@
           min: 20
 # WL species start
         # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic ]
+          inverted: true
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -167,9 +167,9 @@
 # WL species start
           conditions:
           # Golem
-          - !type:OrganType
-            type: Golem
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Golem ]
+            inverted: true
 # WL species end
           damage:
             types:
@@ -181,9 +181,9 @@
             min: 2
 # WL species start
           # Golem
-          - !type:OrganType
-            type: Golem
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Golem ]
+            inverted: true
 # WL species end
           probability: 0.2
 
@@ -203,9 +203,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -409,13 +409,13 @@
 # WL species start
         conditions:
         # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic ]
+          inverted: true
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
   plantMetabolism:
   - !type:PlantAdjustToxins
@@ -439,13 +439,13 @@
 # WL species start
         # Android
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic ]
+          inverted: true
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
 
 
@@ -471,9 +471,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
   # TODO: PROPER hallucinations
 
@@ -495,13 +495,13 @@
 # WL species start
         conditions:
         # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic ]
+          inverted: true
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
       # todo: cough, sneeze
       - !type:HealthChange
@@ -511,13 +511,13 @@
           min: 45
 # WL species start
         # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic ]
+          inverted: true
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           groups:
@@ -532,9 +532,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
       - !type:PopupMessage
         conditions:
@@ -543,9 +543,9 @@
           min: 45
 # WL species start
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         type: Local
         visualType: Medium
@@ -580,7 +580,7 @@
       # WL Cischi species start
       - !type:HealthChange
         conditions:
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Cischi
         damage:
           groups:
@@ -603,9 +603,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -626,9 +626,9 @@
 # WL species start
           conditions:
           # Golem
-          - !type:OrganType
-            type: Golem
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Golem ]
+            inverted: true
 # WL species end
           damage:
             types:
@@ -666,14 +666,14 @@
       effects:
       - !type:PopupMessage
         conditions:
-          - !type:OrganType
+          - !type:MetabolizerTypeCondition
             type: Animal
-            shouldHave: false
+            inverted: true
 # WL species start
           # Golem
-          - !type:OrganType
-            type: Golem
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Golem ]
+            inverted: true
 # WL species end
           - !type:MetabolizerTypeCondition
             type: [ Animal, Vox ]
@@ -685,32 +685,32 @@
       - !type:Vomit
         probability: 0.1
         conditions:
-          - !type:OrganType
+          - !type:MetabolizerTypeCondition
             type: Animal
-            shouldHave: false
+            inverted: true
 # WL species start
           # Golem
-          - !type:OrganType
-            type: Golem
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Golem ]
+            inverted: true
 # WL species end
           - !type:MetabolizerTypeCondition
             type: [ Animal, Vox ]
             inverted: true
-        - !type:HealthChange
-          conditions:
-          - !type:MetabolizerTypeCondition
-            type: [ Animal, Vox ]
-            inverted: true
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Animal, Vox ]
+          inverted: true
 # WL species start
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Vox
-          shouldHave: false
+          inverted: true
         damage:
           types:
             Poison: 1
@@ -746,13 +746,13 @@
           min: 1
 # WL species start
         # Cischi
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Cischi
-          shouldHave: false
+          inverted: true
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         - !type:MetabolizerTypeCondition
           type: [Animal]
@@ -789,13 +789,13 @@
 # WL species start
         conditions:
         # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic ]
+          inverted: true
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
 
 - type: reagent
@@ -841,8 +841,8 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Golem
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
         damage:
           groups:
             Brute: -1
@@ -853,9 +853,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -877,9 +877,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -904,9 +904,9 @@
           min: 5
 # WL species start
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
       - !type:MovementSpeedModifier
         walkSpeedModifier: 0.8
@@ -914,17 +914,17 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
       - !type:HealthChange
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           groups:
@@ -947,13 +947,13 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
       - !type:GenericStatusEffect
         conditions:
-        - !type:OrganType
-          type: Golem
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
         key: SeeingRainbows
         component: SeeingRainbows
         type: Add

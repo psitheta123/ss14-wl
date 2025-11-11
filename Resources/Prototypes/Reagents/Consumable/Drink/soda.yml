@@ -90,19 +90,21 @@
 # WL android species start
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: EnergyDrink
           min: 10
-        - !type:OrganType
-          type: Biorobotic
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic ]
         damage:
           types:
             Shock: 1
       - !type:Electrocute
         probability: 0.1
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-        - !type:ReagentThreshold
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic ]
+        - !type:ReagentCondition
+          reagent: EnergyDrink
           min: 10
 # WL android species end
   fizziness: 0.4
@@ -291,19 +293,21 @@
 # WL android species start
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: FourteenLoko
           min: 10
-        - !type:OrganType
-          type: Biorobotic
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic ]
         damage:
           types:
             Shock: 1
       - !type:Electrocute
         probability: 0.1
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-        - !type:ReagentThreshold
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic ]
+        - !type:ReagentCondition
+          reagent: FourteenLoko
           min: 10
 # WL android species end
     Poison:

@@ -19,14 +19,9 @@
         time: 20.0
 # WL species start
         conditions:
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL species end
 
 - type: reagent
@@ -51,17 +46,9 @@
           min: 20
  # WL species start
         # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem, Cischi ]
+          inverted: true
 # WL species end
         damage:
           groups:
@@ -122,9 +109,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         reagent: Histamine
         amount: -3.0
@@ -132,9 +119,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         key: Jitter
         time: 3.0
@@ -146,9 +133,9 @@
         conditions:
 # WL species start
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -172,17 +159,17 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
       - !type:HealthChange
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -206,19 +193,10 @@
           groups:
             Brute: 1.5
 # WL pecies start
-        # Android
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem, Cischi ]
+          inverted: true
 # WL species end
     Cischi:
       effects:
@@ -231,7 +209,7 @@
       - !type:AdjustReagent
         reagent: Histamine
         amount: 0.25
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.1
 
 - type: reagent
@@ -249,19 +227,10 @@
         damage:
           Brute: -1.5
 # WL species start
-        # Android
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem, Cischi ]
+          inverted: true
 # WL species end
       - !type:HealthChange
         conditions:
@@ -269,18 +238,9 @@
           reagent: Bicaridine
           min: 15
 # WL species start
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem, Cischi ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -331,14 +291,9 @@
             # this is a little arbitrary but they gotta be pretty cold
             max: 213.0
 # WL species start
-          # Golem
-          - !type:OrganType
-            type: Golem
-            shouldHave: false
-          # Android
-          - !type:OrganType
-            type: Biorobotic
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Biorobotic, Golem ]
+            inverted: true
 # WL species end
           damage:
           # todo scale with temp like SS13
@@ -365,9 +320,9 @@
             max: 213.0
 # WL species start
           # Golem
-          - !type:OrganType
-            type: Golem
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Golem ]
+            inverted: true
 # WL species end
           damage:
             types:
@@ -391,19 +346,10 @@
             Shock: -1.5
             Cold: -1.5
 # WL species start
-        # Android
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem, Cischi ]
+          inverted: true
 # WL species end
       - !type:HealthChange
         conditions:
@@ -411,18 +357,9 @@
           reagent: Dermaline
           min: 10
 # WL species start
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem, Cischi ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -463,13 +400,9 @@
             Bloodloss: -0.5
 # WL android species start
         conditions:
-          - !type:OrganType
-            type: Biorobotic
-            shouldHave: false
-          # Golem
-          - !type:OrganType
-            type: Golem
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Biorobotic, Golem ]
+            inverted: true
 # WL android species end
       - !type:HealthChange
         conditions:
@@ -477,13 +410,9 @@
             reagent: Dexalin
             min: 20
 # WL android species start
-          - !type:OrganType
-            type: Biorobotic
-            shouldHave: false
-          # Golem
-          - !type:OrganType
-            type: Golem
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Biorobotic, Golem ]
+            inverted: true
 # WL android species end
         damage:
           types:
@@ -508,13 +437,9 @@
             Bloodloss: -3
 # WL android species start
         conditions:
-          - !type:OrganType
-            type: Biorobotic
-            shouldHave: false
-          # Golem
-          - !type:OrganType
-            type: Golem
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Biorobotic, Golem ]
+            inverted: true
 # WL android species end
       - !type:AdjustReagent
         conditions:
@@ -529,13 +454,9 @@
             reagent: DexalinPlus
             min: 25
 # WL android species start
-          - !type:OrganType
-            type: Biorobotic
-            shouldHave: false
-          # Golem
-          - !type:OrganType
-            type: Golem
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Biorobotic, Golem ]
+            inverted: true
 # WL android species end
         damage:
           types:
@@ -570,14 +491,9 @@
           reagent: Epinephrine
           max: 20
 # WL species start
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -592,14 +508,9 @@
           reagent: Epinephrine
           min: 20
 # WL species start
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -636,16 +547,18 @@
       - !type:AdjustTemperature
         amount: -10
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Epinephrine
           min: 20
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         walkSpeedModifier: 0.5
         sprintSpeedModifier: 0.5
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Epinephrine
           min: 20
-        - !type:OrganType
-          type: Cischi
+        - !type:MetabolizerTypeCondition
+          type: [ Cischi ]
       - !type:SatiateHunger
         factor: -1
       # WL Cischi species end
@@ -668,10 +581,9 @@
       - !type:HealthChange
 # WL species start
         conditions:
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -680,33 +592,32 @@
         probability: 0.02
 # WL species start
         conditions:
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Hyronalin
           min: 30
 # WL species start
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
-           Heat: 2
+            Heat: 2
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Hyronalin
           min: 30
 # WL species start
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
 # WL Cischi species
     Cischi:
@@ -722,7 +633,7 @@
           min: 30
         damage:
           types:
-           Heat: 2
+            Heat: 2
       - !type:Jitter
         conditions:
         - !type:ReagentCondition
@@ -745,14 +656,9 @@
       - !type:Vomit
         conditions:
 # WL species start
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
-        # cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem, Cischi ]
+          inverted: true
 # WL species end
         - !type:ReagentCondition
           reagent: Ipecac
@@ -764,16 +670,12 @@
       - !type:Jitter
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Ipecac
           min: 10
         damage:
           types:
             Poison: -4
-      - !type:Paralyze
-        conditions:
-        - !type:ReagentThreshold
-          min: 10
-        paralyzeTime: 3
 
 - type: reagent
   id: Inaprovaline
@@ -794,13 +696,9 @@
           mobstate: Critical
 # WL species start
         # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -808,15 +706,10 @@
       - !type:ModifyBleed
         amount: -0.25
 # WL species start
-        # Android
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL species end
     Cischi:
       effects:
@@ -845,19 +738,10 @@
             Shock: -0.33
             Cold: -0.33
 # WL species start
-        # Android
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem, Cischi ]
+          inverted: true
 # WL species end
       - !type:SatiateThirst
         factor: -10
@@ -877,13 +761,9 @@
           reagent: Kelotane
           min: 25
 # WL android species start
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL android species end
 # WL Cischi species
     Cischi:
@@ -915,17 +795,9 @@
 # WL species start
         # Android
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem, Cischi ]
+          inverted: true
 # WL species end
       - !type:AdjustTemperature
         conditions:
@@ -933,9 +805,9 @@
           max: 293.15
 # WL species start
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         amount: 100000 # thermal energy, not temperature!
       - !type:AdjustTemperature
@@ -944,9 +816,9 @@
           min: 293.15
 # WL species start
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         amount: -10000
       - !type:PopupMessage
@@ -969,14 +841,14 @@
       effects:
       - !type:AdjustTemperature
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           min: 160.15
         amount: -30000
       - !type:SatiateHunger
         factor: 3
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Leporazine
           min: 5
         key: ForcedSleep
@@ -1003,13 +875,9 @@
             Heat: 0.5
 # WL android species start
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL android species end
       - !type:HealthChange
         conditions:
@@ -1018,9 +886,9 @@
             min: 30
 # WL species start
           # Golem
-          - !type:OrganType
-            type: Golem
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Golem ]
+            inverted: true
 # WL species end
         damage:
           types:
@@ -1028,10 +896,11 @@
 # WL android species start
       - !type:HealthChange
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: Barozine
             min: 30
-          - !type:OrganType
-            type: Biorobotic
+          - !type:MetabolizerTypeCondition
+            type: [ Biorobotic ]
         damage:
           types:
             Shock: 3
@@ -1079,9 +948,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -1119,14 +988,9 @@
       - !type:HealthChange
 # WL species start
         conditions:
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL species end
         damage:
           groups:
@@ -1140,9 +1004,9 @@
           min: 30
 # WL species start
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -1200,13 +1064,9 @@
         amount: -0.5
 # WL android species start
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL android species end
 
 - type: reagent
@@ -1226,13 +1086,9 @@
           amount: 6
 # WL android species start
           conditions:
-            - !type:OrganType
-              type: Biorobotic
-              shouldHave: false
-            # Golem
-            - !type:OrganType
-              type: Golem
-              shouldHave: false
+            - !type:MetabolizerTypeCondition
+              type: [ Biorobotic, Golem ]
+              inverted: true
 # WL android species end
 
 - type: reagent
@@ -1251,19 +1107,10 @@
           types:
             Caustic: -5
 # WL species start
-        # Android
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem, Cischi ]
+          inverted: true
 # WL species end
 # WL Cischi species
     Cischi:
@@ -1290,14 +1137,9 @@
       - !type:HealthChange
 # WL species start
         conditions:
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem, Cischi ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -1315,7 +1157,7 @@
       - !type:AdjustReagent
         reagent: Histamine
         amount: 0.5
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.3
 
 - type: reagent
@@ -1336,9 +1178,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
       - !type:GenericStatusEffect
         key: Stun
@@ -1346,13 +1188,9 @@
         type: Remove
 # WL android species start
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL android species end
       - !type:ModifyStatusEffect
         effectProto: StatusEffectStunned
@@ -1363,13 +1201,9 @@
         type: Remove
 # WL android species start
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL android species end
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
@@ -1397,14 +1231,9 @@
           reagent: TranexamicAcid
           min: 15
 # WL species start
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -1412,10 +1241,11 @@
 # WL android species start
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
-          min: 15
-        - !type:OrganType
-          type: Biorobotic
+        - !type:ReagentCondition
+            reagent: TranexamicAcid
+            min: 15
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic ]
         damage:
           types:
             Caustic: 3
@@ -1455,14 +1285,9 @@
         - !type:TotalDamageCondition
           max: 50
 # WL species start
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem  ]
+          inverted: true
 # WL species end
         damage:
           groups:
@@ -1491,8 +1316,8 @@
         factor: -1
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Cischi
+        - !type:MetabolizerTypeCondition
+          type: [ Cischi ]
         damage:
           types:
             Poison: -6
@@ -1520,13 +1345,9 @@
           Brute: -2
 # WL android species start
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL android species end
 
 - type: reagent
@@ -1556,17 +1377,9 @@
           max: 20
 # WL species start
         # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem, Cischi ]
+          inverted: true
 # WL species end
         damage:
           groups:
@@ -1585,17 +1398,9 @@
           min: 20
 # WL species start
         # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem, Cischi ]
+          inverted: true
 # WL species end
         damage:
           groups:
@@ -1619,7 +1424,8 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Ultravasculine
           min: 0
           max: 30
         damage:
@@ -1630,7 +1436,8 @@
             Brute: 1
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Ultravasculine
           min: 30
         damage:
           groups:
@@ -1742,17 +1549,9 @@
 # WL species start
         # Android
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem, Cischi ]
+          inverted: true
 # WL species end
       - !type:HealthChange
         conditions:
@@ -1761,17 +1560,9 @@
           min: 16
 # WL species start
         # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Cischi
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem, Cischi ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -1824,7 +1615,8 @@
             Toxin: 1
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Sigynate
           min: 16
         damage:
           types:
@@ -1834,19 +1626,22 @@
             Toxin: 2
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Sigynate
           min: 20
       - !type:PopupMessage
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Sigynate
           min: 20
         type: Local
         visualType: Medium
         messages: [ "generic-reagent-effect-nauseous" ]
         probability: 0.2
-      - !type:ChemVomit
+      - !type:Vomit
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Sigynate
           min: 30
         probability: 0.02
 
@@ -1869,14 +1664,9 @@
             Heat: 0.2 # 0.8 per u
 # WL species start
         conditions:
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL species end
       - !type:HealthChange
         conditions:
@@ -1885,9 +1675,9 @@
           min: 12
 # WL species start
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -1921,14 +1711,9 @@
             Radiation: 0.05 # 0.2 per u, 3 for 15u
 # WL species start
         conditions:
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL species end
       - !type:HealthChange
         conditions:
@@ -1937,9 +1722,9 @@
           min: 12
 # WL species start
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -1974,14 +1759,9 @@
         factor: -1
 # WL species start
         conditions:
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL species end
       - !type:HealthChange
         conditions:
@@ -1990,9 +1770,9 @@
           min: 10.5
 # WL species start
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -2026,9 +1806,9 @@
         - !type:TotalDamageCondition
           max: 50
 # WL android species start
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic ]
+          inverted: true
 # WL android species end
         damage:
           types:
@@ -2074,14 +1854,9 @@
             Heat: -1
 # WL species start
         conditions:
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL species end
       # od causes massive bleeding
       - !type:HealthChange
@@ -2091,9 +1866,9 @@
           min: 20
 # WL species start
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -2106,9 +1881,9 @@
           min: 15
 # WL species start
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         probability: 0.1
       - !type:Emote
@@ -2118,9 +1893,9 @@
           min: 20
 # WL species start
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         emote: Scream
         probability: 0.2
@@ -2144,14 +1919,9 @@
             Shock: -1.5 # 6 per u
 # WL species start
         conditions:
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL species end
       - !type:AdjustReagent
         reagent: Licoxide
@@ -2164,9 +1934,9 @@
         amount: -2500
 # WL android species start
         conditions:
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL android species end
       # od makes you freeze to death
       - !type:HealthChange
@@ -2174,12 +1944,6 @@
         - !type:ReagentCondition
           reagent: Insuzine
           min: 12
-# WL species start
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
-# WL species end
         damage:
           types:
             Cold: 1 # 4 per u
@@ -2196,9 +1960,9 @@
           min: 12
 # WL species start
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
 
 - type: reagent
@@ -2245,14 +2009,9 @@
           - !type:TemperatureCondition
             max: 213.0
 # WL species start
-          # Golem
-          - !type:OrganType
-            type: Golem
-            shouldHave: false
-          # Android
-          - !type:OrganType
-            type: Biorobotic
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Biorobotic, Golem ]
+            inverted: true
 # WL species end
           damage:
             groups:
@@ -2278,14 +2037,9 @@
         - !type:TemperatureCondition
           max: 213.0
 # WL species start
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic, Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -2297,7 +2051,7 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           max: 213.0
         damage:
           types:

@@ -48,7 +48,7 @@
     - reagents: [ Water, SpaceCleaner ]
       methods: [ Touch ]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
     - reagents: [ Water ]
       methods: [Touch, Ingestion, Injection]
       effects:
@@ -234,7 +234,7 @@
       - Ternary
   - type: MobCollision # WL-Changes: MobCollision works for players only
   - type: OfferItem # CorvaxGoob-Offer
-  
+
 - type: entity
   save: false
   name: Urist McAndroid

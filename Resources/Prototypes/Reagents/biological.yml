@@ -41,7 +41,7 @@
 # WL-Changes-start
       - !type:HealthChange
         conditions:
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Akula
         damage:
           groups:
@@ -181,14 +181,10 @@
         probability: 0.25
 # WL species start
         conditions:
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem, Biorobotic ]
+          inverted: true
 # WL species end
 
 - type: reagent
@@ -219,26 +215,21 @@
             Bloodloss: -3
 # WL species start
         conditions:
-        # Android
-        - !type:OrganType
-          type: Biorobotic
-          shouldHave: false
-        # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem, Biorobotic ]
+          inverted: true
       # Golem
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         walkSpeedModifier: 2
         sprintSpeedModifier: 2
         conditions:
-        - !type:OrganType
-          type: Golem
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
       - !type:SatiateHunger
         factor: 10
         conditions:
-        - !type:OrganType
-          type: Golem
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
 # WL species end
       - !type:ModifyBleed
         amount: -1.5
@@ -268,8 +259,8 @@
       effects:
       - !type:SatiateHunger
         conditions:
-        - !type:OrganType
-          type: Golem
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
 
 - type: reagent
   id: Vomit

@@ -47,18 +47,18 @@
           type: [ Human, Animal, Rat, Plant, Cischi ] # WL Cischi species
       #- !type:MovespeedModifier
       #  conditions:
-      #  - !type:ReagentThreshold
+      #  - !type:ReagentCondition
       #    reagent: Oxygen
       #    min: 0.1
-      #  - !type:OrganType
-      #    type: Cischi
+      #  - !type:MetabolizerTypeCondition
+      #    type: [ Cischi ]
       #  walkSpeedModifier: 0.85
       #  sprintSpeedModifier: 0.85
       - !type:SatiateHunger
         factor: -0.005
         conditions:
-        - !type:OrganType
-          type: Cischi
+        - !type:MetabolizerTypeCondition
+          type: [ Cischi ]
       # WL Cischi species end
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
@@ -104,7 +104,7 @@
       effects:
       - !type:SatiateHunger
         conditions:
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Golem
     Poison:
       effects:
@@ -112,9 +112,9 @@
 # WL species start
         # Cischi
         conditions:
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Cischi ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -137,9 +137,9 @@
 # WL species start
         # Cischi
         conditions:
-        - !type:OrganType
-          type: Cischi
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Cischi ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -149,8 +149,8 @@
         # Cischi
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Cischi
+        - !type:MetabolizerTypeCondition
+          type: [ Cischi ]
         damage:
           types:
             Asphyxiation: 1
@@ -305,8 +305,8 @@
 # WL android species start
       - !type:ModifyLungGas
         conditions:
-        - !type:OrganType
-          type: Biorobotic
+        - !type:MetabolizerTypeCondition
+          type: [ Biorobotic ]
         ratios:
           CarbonDioxide: 1.0
           Nitrogen: -1.0
@@ -436,8 +436,8 @@
       # WL Cischi species start
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Cischi
+        - !type:MetabolizerTypeCondition
+          type: [ Cischi ]
         scaleByQuantity: true
         ignoreResistances: true
         damage:
@@ -472,14 +472,14 @@
       effects:
       - !type:AdjustTemperature
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           min: 160.15
         amount: -30000
       - !type:SatiateHunger
         factor: -3
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Frezon
           min: 5
         key: ForcedSleep

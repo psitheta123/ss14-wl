@@ -1,4 +1,4 @@
-﻿- type: reagent
+- type: reagent
   id: BasePyrotechnic
   group: Pyrotechnic
   abstract: true
@@ -34,9 +34,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -68,9 +68,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -82,8 +82,8 @@
       - !type:HealthChange
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
         damage:
           types:
             Caustic: 0.5
@@ -107,9 +107,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -146,9 +146,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         damage:
           types:
@@ -163,8 +163,8 @@
       - !type:HealthChange
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
         damage:
           types:
             Caustic: 0.5
@@ -227,9 +227,9 @@
 # WL species start
         conditions:
         # Golem
-        - !type:OrganType
-          type: Golem
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
 # WL species end
         - !type:MetabolizerTypeCondition
           type: [Vox]
@@ -245,20 +245,20 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Golem
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
         damage:
           groups:
             Brute: 0.2
       - !type:Drunk
         conditions:
-        - !type:OrganType
-          type: Golem
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
         boozePower: 3
       - !type:SatiateHunger
         conditions:
-        - !type:OrganType
-          type: Golem
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
 # WL species end
 
 - type: reagent

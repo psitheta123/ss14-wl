@@ -116,7 +116,7 @@
         ToolTip="{Loc 'ui-languages-menu-button-tip'}"
         MinSize="48 64"
         HorizontalExpand="True"
-        AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
+        AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
         />
 <!--WL-Changes: Languages end-->
     </GridContainer>
