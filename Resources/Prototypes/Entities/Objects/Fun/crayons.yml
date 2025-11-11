@@ -23,7 +23,6 @@
   - type: Crayon
     capacity: 250 #WL-Changes: Crayons up
   - type: Edible
-    selectedState: like
   - type: LimitedCharges
     maxCharges: 250
   - type: StaticPrice

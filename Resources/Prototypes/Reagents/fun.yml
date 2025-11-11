@@ -182,7 +182,6 @@
         component: SeeingRainbows
         type: Add
         time: 16
-        refresh: false
         conditions:
         # Golem
         - !type:MetabolizerTypeCondition
@@ -392,7 +391,6 @@
           min: 8
         key: ForcedSleep
         component: ForcedSleeping
-        refresh: false
         type: Add
 # WL golem species end
 

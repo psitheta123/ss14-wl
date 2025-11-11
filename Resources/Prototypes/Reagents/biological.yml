@@ -42,7 +42,7 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: Akula
+          type: [ Akula ]
         damage:
           groups:
             Brute: -0.2

@@ -853,7 +853,6 @@
           min: 5
         key: ForcedSleep
         component: ForcedSleeping
-        refresh: false
         type: Add
 # WL golem species end
 
@@ -1258,7 +1257,6 @@
         component: SeeingRainbows
         type: Add
         time: 10
-        refresh: false
       - !type:PopupMessage
         visualType: Medium
         messages: ["������ �� ������� ����� �������...", "�� ������ ����������"]

@@ -54,11 +54,7 @@
         conditions:
         # Golem
         - !type:MetabolizerTypeCondition
-          type: [ Golem ]
-          inverted: true
-        #Akula
-        - !type:MetabolizerTypeCondition
-          type: Animal
+          type: [ Golem, Animal ]
           inverted: true
 # WL species end
         damage:
@@ -69,11 +65,7 @@
         conditions:
         # Golem
         - !type:MetabolizerTypeCondition
-          type: [ Golem ]
-          inverted: true
-        #Akula
-        - !type:MetabolizerTypeCondition
-          type: Animal
+          type: [ Golem, Animal ]
           inverted: true
 # WL species end
         type: Local
@@ -88,12 +80,8 @@
         conditions:
         # Golem
         - !type:MetabolizerTypeCondition
-          type: [ Golem ]
+          type: [ Golem, Anumal ]
           inverted: true
-        #Akula
-        - !type:MetabolizerTypeCondition
-          type: Animal
-          shouldHave: true
 # WL species end
 
 - type: reagent
@@ -467,7 +455,6 @@
         effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 10
-        refresh: false
 # WL species start
         conditions:
         # Golem
@@ -958,7 +945,6 @@
         component: SeeingRainbows
         type: Add
         time: 16
-        refresh: false
 # WL species end
 
 - type: reagent
