@@ -84,7 +84,17 @@
   - type: SolutionContainerManager
     solutions:
       stomach:
+        temperature: 293.15
+        canReact: True
         maxVol: 50
+        name: null
+        reagents: []
+      food:
+        temperature: 293.15
+        canReact: True
+        maxVol: 0
+        name: food
+        reagents: []
   - type: Stomach
   - type: Metabolizer
     maxReagents: 3
