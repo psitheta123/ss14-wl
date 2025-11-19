@@ -272,7 +272,7 @@ public sealed class DamageChangedEvent : EntityEventArgs
         DamageSpecifier? damageDelta,
         bool interruptsDoAfters,
         EntityUid? origin,
-        ForcedRefresh = forcedRefresh; // Offbrand
+        bool forcedRefresh = false // Offbrand
     )
     {
         Damageable = damageable;

@@ -1,3 +1,4 @@
+using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
@@ -10,6 +11,8 @@ namespace Content.Shared.EntityConditions.Conditions.Body;
 /// <inheritdoc cref="EntityConditionSystem{T, TCondition}"/>
 public sealed partial class MobStateEntityConditionSystem : EntityConditionSystem<MobStateComponent, MobStateCondition>
 {
+    [Dependency] private readonly HealthRankingSystem _healthRanking = default!; //Offbrand
+
     protected override void Condition(Entity<MobStateComponent> entity, ref EntityConditionEvent<MobStateCondition> args)
     {
         if (entity.Comp.CurrentState == args.Condition.Mobstate)
@@ -17,8 +20,7 @@ public sealed partial class MobStateEntityConditionSystem : EntityConditionSyste
         // Begin Offbrand
         if (args.Condition.Mobstate == MobState.Critical)
         {
-            if (args.EntityManager.System<Content.Shared._Offbrand.Wounds.HealthRankingSystem>()
-                .IsCritical(args.TargetEntity))
+            if (_healthRanking.IsCritical(entity))
             {
                 args.Result = true;
             }

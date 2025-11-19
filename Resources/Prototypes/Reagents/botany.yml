@@ -128,8 +128,8 @@
       statusEffects:
       - statusEffect: StatusEffectPainkillersNegligibleRobustHarvest
         conditions:
-        - !type:OrganType
-          type: Plant
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
       effects:
       - !type:HealthChange
         damage:
@@ -191,20 +191,22 @@
         damage:
           types:
             Poison: 2
-      - !type:CreateEntityReactionEffect
+      - !type:SpawnEntity
         entity: MobDionaNymph
         conditions:
-        - !type:OrganType
-          type: Plant
-        - !type:ReagentThreshold
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+        - !type:ReagentCondition
+          reagent: Sedin
           min: 40
       - !type:AdjustReagent
         reagent: Sedin
         amount: -20
         conditions:
-        - !type:OrganType
-          type: Plant
-        - !type:ReagentThreshold
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+        - !type:ReagentCondition
+          reagent: Sedin
           min: 40
   # End Offbrand
 
@@ -256,14 +258,14 @@
             Caustic: 1
       # Begin Offbrand
         conditions:
-        - !type:OrganType
-          type: Plant
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+          inverted: true
       - !type:SatiateHunger
         factor: 1
         conditions:
-        - !type:OrganType
-          type: Plant
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
       # End Offbrand
     Gas:
       effects:
@@ -354,9 +356,9 @@
       # Begin Offbrand
             Caustic: 0.5
         conditions:
-        - !type:OrganType
-          type: Plant
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+          inverted: true
       - !type:HealthChange
         damage:
           types:
@@ -364,6 +366,6 @@
             Cold: -0.5
             Shock: -0.5
         conditions:
-        - !type:OrganType
-          type: Plant
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
       # End Offbrand

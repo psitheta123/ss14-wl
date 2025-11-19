@@ -139,7 +139,7 @@ public sealed partial class DamageableSystem
 
         // Begin Offbrand
         var beforeCommit = new Content.Shared._Offbrand.Wounds.BeforeDamageCommitEvent(damage, forceRefresh);
-        RaiseLocalEvent(uid.Value, ref beforeCommit);
+        RaiseLocalEvent(ent, ref beforeCommit);
         damage = beforeCommit.Damage;
         // End Offbrand
 

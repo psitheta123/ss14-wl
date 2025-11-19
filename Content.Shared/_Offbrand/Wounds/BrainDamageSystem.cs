@@ -223,7 +223,7 @@ public sealed partial class BrainDamageSystem : EntitySystem
     {
         var oxygenation = _heart.BloodOxygenation((ent.Owner, ent.Comp3));
 
-        var seed = SharedRandomExtensions.HashCodeCombine(new() { (int)_timing.CurTick.Value, GetNetEntity(ent).Id });
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
         var rand = new System.Random(seed);
 
         DoOxygen(ent, oxygenation, rand);

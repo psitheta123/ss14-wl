@@ -1,6 +1,8 @@
 using Content.Server.Body.Components;
 using Content.Shared._Offbrand.EntityEffects;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.EntityEffects;
+using Content.Shared.EntityConditions;
 using Content.Shared.FixedPoint;
 
 namespace Content.Server._Offbrand.EntityEffects;
@@ -11,38 +13,32 @@ public sealed class MetaboliteThresholdSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<CheckEntityEffectConditionEvent<MetaboliteThreshold>>(OnCheckMetaboliteThreshold);
+        SubscribeLocalEvent<MetabolizerComponent, EntityConditionEvent<MetaboliteCondition>>(OnCheckMetaboliteThreshold);
     }
 
-    private void OnCheckMetaboliteThreshold(ref CheckEntityEffectConditionEvent<MetaboliteThreshold> args)
+    private void OnCheckMetaboliteThreshold(Entity<MetabolizerComponent> entity, ref EntityConditionEvent<MetaboliteCondition> args)
     {
-        if (args.Args is not EntityEffectReagentArgs reagentArgs)
-            throw new NotImplementedException();
-
         var reagent = args.Condition.Reagent;
         if (reagent == null)
-            reagent = reagentArgs.Reagent?.ID;
+            return;
 
         if (reagent is not { } metaboliteReagent)
-        {
-            args.Result = true;
             return;
-        }
 
-        if (!TryComp<MetabolizerComponent>(reagentArgs.OrganEntity, out var metabolizer))
-        {
-            args.Result = true;
+        if (!TryComp<MetabolizerComponent>(entity, out var metabolizer))
             return;
-        }
+
+        if (!TryComp<SolutionComponent>(entity, out var solution))
+            return;
 
         var metabolites = metabolizer.Metabolites;
 
         var quant = FixedPoint2.Zero;
         metabolites.TryGetValue(metaboliteReagent, out quant);
 
-        if (args.Condition.IncludeBloodstream && reagentArgs.Source != null)
+        if (args.Condition.IncludeBloodstream && solution.Solution != null)
         {
-            quant += reagentArgs.Source.GetTotalPrototypeQuantity(metaboliteReagent);
+            quant += solution.Solution.GetTotalPrototypeQuantity(metaboliteReagent);
         }
 
         args.Result = quant >= args.Condition.Min && quant <= args.Condition.Max;

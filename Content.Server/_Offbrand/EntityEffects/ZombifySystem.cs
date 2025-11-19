@@ -1,3 +1,4 @@
+/*
 using Content.Server.Zombies;
 using Content.Shared._Offbrand.EntityEffects;
 using Content.Shared.EntityEffects;
@@ -15,8 +16,9 @@ public sealed class ZombifySystem : EntitySystem
         SubscribeLocalEvent<ExecuteEntityEffectEvent<Zombify>>(OnExecuteZombify);
     }
 
-    private void OnExecuteZombify(ref ExecuteEntityEffectEvent<Zombify> args)
+    private void OnExecuteZombify(ref EntityEffectEvent<Zombify> args)
     {
         _zombie.ZombifyEntity(args.Args.TargetEntity);
     }
 }
+*/

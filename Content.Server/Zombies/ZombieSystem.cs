@@ -275,15 +275,15 @@ namespace Content.Server.Zombies
                 {
                     if (HasComp<ZombieImmuneComponent>(uid) || cannotSpread)
                         continue;
-
-                if (_mobState.IsIncapacitated(entity, mobState) && !HasComp<ZombieComponent>(entity) && !HasComp<ZombieImmuneComponent>(entity) && !HasComp<WoundableComponent>(entity)) // Offbrand
-                {
-                    ZombifyEntity(entity);
-                    args.BonusDamage = -args.BaseDamage;
                 }
-                else if (mobState.CurrentState == MobState.Alive) //heals when zombies bite live entities
+                else
                 {
-                    _damageable.TryChangeDamage(uid, component.HealingOnBite, true, false);
+                    if (HasComp<ZombieImmuneComponent>(uid) || cannotSpread)
+                        continue;
+
+                    // If the target is dead and can be infected, infect.
+                    ZombifyEntity(uid);
+                    args.Handled = true;
                 }
             }
         }

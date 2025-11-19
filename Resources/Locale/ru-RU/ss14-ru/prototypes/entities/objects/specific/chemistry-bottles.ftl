@@ -176,12 +176,6 @@ ent-ChemistryBottleLeft4Zed = { ent-BaseChemistryBottleFilled }
     .desc = { ent-BaseChemistryBottleFilled.desc }
     .suffix = Аритразин
 
-ent-ChemistryBottleBarozine = { ent-BaseChemistryBottleFilled }
-    .desc = { ent-BaseChemistryBottleFilled.desc }
-    .suffix = Барозин
-
-ent-ChemistryBottleBicaridine = { ent-BaseChemistryBottleFilled }
-    .desc = { ent-BaseChemistryBottleFilled.desc }
 ent-ChemistryBottleEphedrine = { ent-BaseChemistryBottleFilled }
     .suffix = Эфедрин
     .desc = { ent-BaseChemistryBottleFilled.desc }

@@ -211,7 +211,7 @@ public sealed partial class RevenantSystem
 
         //KILL THEMMMM
 
-        _damage.TryChangeDamage(args.Args.Target, component.HarvestDamage, true, origin: uid); // Offbrand - use a fixed amount
+        _damage.TryChangeDamage(args.Args.Target.Value, component.HarvestDamage, true, origin: uid); // Offbrand - use a fixed amount
 
         args.Handled = true;
     }
