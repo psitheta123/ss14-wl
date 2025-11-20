@@ -1,5 +1,4 @@
 using Content.Shared.Atmos.Rotting;
-using Content.Shared.Damage;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Overlays;
@@ -9,6 +8,7 @@ using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared._Offbrand.Wounds; // Offbrand
 using Content.Shared.Mobs; // Offbrand
+using Content.Shared.Damage.Components;
 
 namespace Content.Client.Overlays;
 

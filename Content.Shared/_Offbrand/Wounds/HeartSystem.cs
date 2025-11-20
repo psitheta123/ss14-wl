@@ -4,6 +4,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Medical;
 using Content.Shared.Random.Helpers;
@@ -102,7 +103,7 @@ public sealed partial class HeartSystem : EntitySystem
                 var threshold = heartrate.StrainDamageThresholds.HighestMatch(HeartStrain((uid, heartrate)));
                 if (threshold is (var chance, var amount))
                 {
-                    var seed = SharedRandomExtensions.HashCodeCombine(new() { (int)_timing.CurTick.Value, GetNetEntity(uid).Id });
+                    var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(uid).Id);
                     var rand = new System.Random(seed);
 
                     if (rand.Prob(chance))
@@ -170,7 +171,7 @@ public sealed partial class HeartSystem : EntitySystem
 
     private void OnHeartBeatHypovolemia(Entity<HeartStopOnHypovolemiaComponent> ent, ref HeartBeatEvent args)
     {
-        var seed = SharedRandomExtensions.HashCodeCombine(new() { (int)_timing.CurTick.Value, GetNetEntity(ent).Id });
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
         var rand = new System.Random(seed);
 
         var volume = BloodVolume((ent.Owner, Comp<HeartrateComponent>(ent)));
@@ -179,7 +180,7 @@ public sealed partial class HeartSystem : EntitySystem
 
     private void OnHeartBeatStrain(Entity<HeartStopOnHighStrainComponent> ent, ref HeartBeatEvent args)
     {
-        var seed = SharedRandomExtensions.HashCodeCombine(new() { (int)_timing.CurTick.Value, GetNetEntity(ent).Id });
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
         var rand = new System.Random(seed);
 
         if (_statusEffects.HasEffectComp<PreventHeartStopFromStrainStatusEffectComponent>(ent))
@@ -191,7 +192,7 @@ public sealed partial class HeartSystem : EntitySystem
 
     private void OnHeartBeatBrain(Entity<HeartStopOnBrainHealthComponent> ent, ref HeartBeatEvent args)
     {
-        var seed = SharedRandomExtensions.HashCodeCombine(new() { (int)_timing.CurTick.Value, GetNetEntity(ent).Id });
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
         var rand = new System.Random(seed);
 
         if (_statusEffects.HasEffectComp<PreventHeartStopFromStrainStatusEffectComponent>(ent))
@@ -351,7 +352,7 @@ public sealed partial class HeartSystem : EntitySystem
 
     public (FixedPoint2, FixedPoint2) BloodPressure(Entity<HeartrateComponent> ent)
     {
-        var seed = SharedRandomExtensions.HashCodeCombine(new() { (int)_timing.CurTick.Value, GetNetEntity(ent).Id });
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
         var rand = new System.Random(seed);
 
         var volume = BloodCirculation(ent);
@@ -370,7 +371,7 @@ public sealed partial class HeartSystem : EntitySystem
         if (!ent.Comp.Running)
             return 0;
 
-        var seed = SharedRandomExtensions.HashCodeCombine(new() { (int)_timing.CurTick.Value, GetNetEntity(ent).Id });
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
         var rand = new System.Random(seed);
 
         var strain = HeartStrain(ent);
