@@ -1,22 +1,20 @@
 using Content.Server.Body.Components;
-using Content.Shared._Offbrand.EntityEffects;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.EntityEffects;
 using Content.Shared.EntityConditions;
 using Content.Shared.FixedPoint;
+using Content.Shared._Offbrand.EntityEffects;
 
-namespace Content.Server._Offbrand.EntityEffects;
+namespace Content.Server._Offbrand.EntityEffects.Effects;
 
-public sealed class MetaboliteThresholdSystem : EntitySystem
+/// <summary>
+/// This effect adjusts a respirator's saturation value.
+/// The saturation adjustment is modified by scale.
+/// </summary>
+/// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
+public sealed partial class MetaboliteConditionEntitySystem : EntityConditionSystem<MetabolizerComponent, MetaboliteCondition>
 {
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<MetabolizerComponent, EntityConditionEvent<MetaboliteCondition>>(OnCheckMetaboliteThreshold);
-    }
-
-    private void OnCheckMetaboliteThreshold(Entity<MetabolizerComponent> entity, ref EntityConditionEvent<MetaboliteCondition> args)
+    protected override void Condition(Entity<MetabolizerComponent> entity, ref EntityConditionEvent<MetaboliteCondition> args)
     {
         var reagent = args.Condition.Reagent;
         if (reagent == null)
@@ -25,13 +23,10 @@ public sealed class MetaboliteThresholdSystem : EntitySystem
         if (reagent is not { } metaboliteReagent)
             return;
 
-        if (!TryComp<MetabolizerComponent>(entity, out var metabolizer))
-            return;
-
         if (!TryComp<SolutionComponent>(entity, out var solution))
             return;
 
-        var metabolites = metabolizer.Metabolites;
+        var metabolites = entity.Comp.Metabolites;
 
         var quant = FixedPoint2.Zero;
         metabolites.TryGetValue(metaboliteReagent, out quant);
@@ -42,5 +37,8 @@ public sealed class MetaboliteThresholdSystem : EntitySystem
         }
 
         args.Result = quant >= args.Condition.Min && quant <= args.Condition.Max;
+
+        Logger.Debug("STEET");
+        Logger.Debug(args.Result.ToString());
     }
 }

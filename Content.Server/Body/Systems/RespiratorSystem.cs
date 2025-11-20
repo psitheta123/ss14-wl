@@ -81,7 +81,7 @@ public sealed class RespiratorSystem : EntitySystem
             if (_mobState.IsDead(uid))
                 continue;
 
-            //UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
+            UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
 
             if (!_mobState.IsIncapacitated(uid)) // cannot breathe in crit.
             {
@@ -427,7 +427,6 @@ public sealed class RespiratorSystem : EntitySystem
         if (!Resolve(uid, ref respirator, false))
             return;
 
-        Logger.Debug(amount.ToString());
         respirator.Saturation += amount;
         respirator.Saturation =
             Math.Clamp(respirator.Saturation, respirator.MinSaturation, respirator.MaxSaturation);

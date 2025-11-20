@@ -7,12 +7,6 @@ using Content.Shared.EntityConditions;
 
 namespace Content.Shared._Offbrand.EntityEffects;
 
-public sealed partial class MetaboliteConditionSystem : EntityConditionSystem<SolutionComponent, MetaboliteCondition>
-{
-    protected override void Condition(Entity<SolutionComponent> entity, ref EntityConditionEvent<MetaboliteCondition> args)
-    { }
-}
-
 public sealed partial class MetaboliteCondition : EntityConditionBase<MetaboliteCondition>
 {
     [DataField]
