@@ -638,13 +638,15 @@
     Medicine:
       # Begin Offbrand
       metabolismRate: 0.25
-      statusEffects:
-      - statusEffect: StatusEffectHeartStrainRomerol
+      effects:
+      - !type:ModifyStatusEffect
+        type: Set
+        time: 1.5
+        effectProto: StatusEffectHeartStrainRomerol
         conditions:
         - !type:ReagentCondition # WL-Changes: Metabolite -> Reagent
           reagent: Romerol
           min: 15
-      effects:
       - !type:AdjustReagent
         reagent: Romerol
         amount: -10

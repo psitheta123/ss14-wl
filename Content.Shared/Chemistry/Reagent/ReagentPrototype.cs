@@ -295,47 +295,6 @@ namespace Content.Shared.Chemistry.Reagent
         }
     }
 
-    // Begin Offbrand
-    /*
-    [DataDefinition]
-    public sealed partial class ReagentStatusEffectEntry
-    {
-        [DataField]
-        public EntityConditionBase[]? Conditions;
-
-        [DataField]
-        public EntProtoId StatusEffect;
-
-        public bool ShouldApplyStatusEffect(EntityEffectBase args)
-        {
-            if (Conditions != null)
-            {
-                foreach (var cond in Conditions)
-                {
-                    if (!cond.Condition(args))
-                        return false;
-                }
-            }
-
-            return true;
-        }
-
-        public string? Describe(IPrototypeManager prototype, IEntitySystemManager entSys)
-        {
-            if (!prototype.Resolve(StatusEffect, out var effectProtoData))
-                return null;
-
-            var locName = Loc.GetString(effectProtoData.Name); //WL-Changes-offbrand-ftl-fix
-
-            return Loc.GetString("reagent-guidebook-status-effect", ("effect", locName), //WL-Changes-offbrand-ftl-fix // effectProtoData.Name ?? string.Empty -> locName
-                ("conditionCount", Conditions?.Length ?? 0),
-                ("conditions",
-                    Content.Shared.Localizations.ContentLocalizationManager.FormatList(Conditions?.Select(x => x.GuidebookExplanation(prototype)).ToList() ?? new List<string>())));
-        }
-    }
-    */
-    // End Offbrand
-
     [Serializable, NetSerializable]
     public struct ReagentEffectsGuideEntry
     {

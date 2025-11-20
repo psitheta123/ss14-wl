@@ -9,8 +9,11 @@
   metabolisms:
     Medicine:
       metabolismRate: 0.05
-      statusEffects:
-      - statusEffect: StatusEffectPainkillersMildParacetamol
+      effects:
+      - !type:ModifyStatusEffect
+        type: Set
+        time: 1.5
+        effectProto: StatusEffectPainkillersMildParacetamol
         conditions:
         - !type:ReagentCondition
           reagent: Tramadol
@@ -18,12 +21,14 @@
         - !type:ReagentCondition
           reagent: Oxycodone
           max: 1
-      - statusEffect: StatusEffectPainkillersMildParacetamolOverdose
+      - !type:ModifyStatusEffect
+        type: Set
+        time: 1.5
+        effectProto: StatusEffectPainkillersMildParacetamolOverdose
         conditions:
         - !type:ReagentCondition
           reagent: Paracetamol
           min: 10
-      effects:
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -44,9 +49,15 @@
   metabolisms:
     Medicine:
       metabolismRate: 0.05
-      statusEffects:
-      - statusEffect: StatusEffectPainkillersTramadol
-      - statusEffect: StatusEffectPainkillersTramadolOverdose
+      effects:
+      - !type:ModifyStatusEffect
+        type: Set
+        time: 1.5
+        effectProto: StatusEffectPainkillersTramadol
+      - !type:ModifyStatusEffect
+        type: Set
+        time: 1.5
+        effectProto: StatusEffectPainkillersTramadolOverdose
         conditions:
         - !type:ReagentCondition
           reagent: Tramadol
@@ -54,12 +65,14 @@
         - !type:ReagentCondition
           reagent: Oxycodone
           max: 1
-      - statusEffect: StatusEffectHeartStrainTramadolAlcohol
+      - !type:ModifyStatusEffect
+        type: Set
+        time: 1.5
+        effectProto: StatusEffectHeartStrainTramadolAlcohol
         conditions:
         - !type:ReagentCondition
           reagent: Ethanol
           min: 1
-      effects:
       - !type:Drunk
         boozePower: 1
         conditions:
@@ -94,19 +107,27 @@
   metabolisms:
     Medicine:
       metabolismRate: 0.15
-      statusEffects:
-      - statusEffect: StatusEffectPainkillersStrongOxycodone
-      - statusEffect: StatusEffectPainkillersStrongOxycodoneOverdose
+      effects:
+      - !type:ModifyStatusEffect
+        type: Set
+        time: 1.5
+        effectProto: StatusEffectPainkillersStrongOxycodone
+      - !type:ModifyStatusEffect
+        type: Set
+        time: 1.5
+        effectProto: StatusEffectPainkillersStrongOxycodoneOverdose
         conditions:
         - !type:ReagentCondition
           reagent: Oxycodone
           min: 10
-      - statusEffect: StatusEffectHeartStrainOxycodoneAlcohol
+      - !type:ModifyStatusEffect
+        type: Set
+        time: 1.5
+        effectProto: StatusEffectHeartStrainOxycodoneAlcohol
         conditions:
         - !type:ReagentCondition
           reagent: Ethanol
           min: 1
-      effects:
       - !type:Drunk
         boozePower: 2
         conditions:
@@ -213,16 +234,21 @@
   color: "#4053b0"
   metabolisms:
     Medicine:
-      statusEffects:
-      - statusEffect: StatusEffectMajorOxygenationCloneoxadone
-        conditions:
-        - !type:TemperatureCondition
-          max: 170.0
-      - statusEffect: StatusEffectHeartStabilizationCloneoxadone
-        conditions:
-        - !type:TemperatureCondition
-          max: 170.0
       effects:
+      - !type:ModifyStatusEffect
+        type: Set
+        time: 1.5
+        effectProto: StatusEffectMajorOxygenationCloneoxadone
+        conditions:
+        - !type:TemperatureCondition
+          max: 170.0
+      - !type:ModifyStatusEffect
+        type: Set
+        time: 1.5
+        effectProto: StatusEffectHeartStabilizationCloneoxadone
+        conditions:
+        - !type:TemperatureCondition
+          max: 170.0
       - !type:ModifyHeartDamage
         amount: -0.6
         conditions:
@@ -380,13 +406,15 @@
   metabolisms:
     Medicine:
       metabolismRate: 0.2
-      statusEffects:
-      - statusEffect: StatusEffectPainkillersSalicylicAcid
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectPainkillersSalicylicAcid
+        type: Set
+        time: 1.5
         conditions:
         - !type:TotalGroupDamageCondition
           group: Brute
           min: 35
-      effects:
       - !type:EvenHealthChange
         damage:
           Brute: -2
@@ -438,13 +466,15 @@
   metabolisms:
     Medicine:
       metabolismRate: 0.2
-      statusEffects:
-      - statusEffect: StatusEffectPainkillersOxandrolone
+      effects:
+      - !type:ModifyStatusEffect
+        type: Set
+        time: 1.5
+        effectProto: StatusEffectPainkillersOxandrolone
         conditions:
         - !type:TotalGroupDamageCondition
           group: Burn
           min: 35
-      effects:
       - !type:EvenHealthChange
         damage:
           Burn: -3

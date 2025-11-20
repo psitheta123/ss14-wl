@@ -125,12 +125,14 @@
     Poison:
       # Begin Offbrand
       metabolismRate: 0.2
-      statusEffects:
-      - statusEffect: StatusEffectPainkillersNegligibleRobustHarvest
+      effects:
+      - !type:ModifyStatusEffect
+        type: Set
+        time: 1.5
+        effectProto: StatusEffectPainkillersNegligibleRobustHarvest
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
-      effects:
       - !type:HealthChange
         damage:
           types:
@@ -184,9 +186,11 @@
   metabolisms:
     Poison:
       metabolismRate: 1
-      statusEffects:
-      - statusEffect: StatusEffectHeartStrainSedin
       effects:
+      - !type:ModifyStatusEffect
+        type: Set
+        time: 1.5
+        effectProto: StatusEffectHeartStrainSedin
       - !type:HealthChange
         damage:
           types:

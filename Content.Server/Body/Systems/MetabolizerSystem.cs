@@ -203,15 +203,6 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                 //var args = new EntityEffectReagentArgs(actualEntity, EntityManager, ent, solution, mostToRemove, proto, null, scale);
 
                 // Begin Offbrand
-                /*
-                foreach (var effect in entry.StatusEffects)
-                {
-                    if (!effect.ShouldApplyStatusEffect(args))
-                        _statusEffects.TryRemoveStatusEffect(actualEntity, effect.StatusEffect);
-                    else
-                        _statusEffects.TryUpdateStatusEffectDuration(actualEntity, effect.StatusEffect, out _);
-                }
-                */
                 // End Offbrand
 
                 // do all effects, if conditions apply
