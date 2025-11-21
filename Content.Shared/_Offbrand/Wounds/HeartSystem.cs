@@ -89,7 +89,7 @@ public sealed partial class HeartSystem : EntitySystem
                 var threshold = heartrate.StrainDamageThresholds.HighestMatch(Strain((uid, heartrate)));
                 if (threshold is (var chance, var amount))
                 {
-                    var seed = SharedRandomExtensions.HashCodeCombine(new() { (int)_timing.CurTick.Value, GetNetEntity(uid).Id });
+                    var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(uid).Id);
                     var rand = new System.Random(seed);
 
                     if (rand.Prob(chance))
@@ -151,7 +151,7 @@ public sealed partial class HeartSystem : EntitySystem
 
     private void OnHeartBeatStrain(Entity<HeartStopOnHighStrainComponent> ent, ref HeartBeatEvent args)
     {
-        var seed = SharedRandomExtensions.HashCodeCombine(new() { (int)_timing.CurTick.Value, GetNetEntity(ent).Id });
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
         var rand = new System.Random(seed);
 
         if (_statusEffects.HasEffectComp<PreventHeartStopFromStrainStatusEffectComponent>(ent))
@@ -316,7 +316,7 @@ public sealed partial class HeartSystem : EntitySystem
         if (!ent.Comp.Running)
             return 0;
 
-        var seed = SharedRandomExtensions.HashCodeCombine(new() { (int)_timing.CurTick.Value, GetNetEntity(ent).Id });
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
         var rand = new System.Random(seed);
 
         var deviation = rand.Next(-ent.Comp.HeartRateDeviation, ent.Comp.HeartRateDeviation);
@@ -326,7 +326,7 @@ public sealed partial class HeartSystem : EntitySystem
 
     public (int, int) BloodPressure(Entity<HeartrateComponent> ent)
     {
-        var seed = SharedRandomExtensions.HashCodeCombine(new() { (int)_timing.CurTick.Value, GetNetEntity(ent).Id });
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
         var rand = new System.Random(seed);
 
         var deviationA = rand.Next(-ent.Comp.BloodPressureDeviation, ent.Comp.BloodPressureDeviation);
@@ -340,7 +340,7 @@ public sealed partial class HeartSystem : EntitySystem
 
     public int Etco2(Entity<HeartrateComponent> ent)
     {
-        var seed = SharedRandomExtensions.HashCodeCombine(new() { (int)_timing.CurTick.Value, GetNetEntity(ent).Id });
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
         var rand = new System.Random(seed);
 
         var deviation = rand.Next(-ent.Comp.Etco2Deviation, ent.Comp.Etco2Deviation);

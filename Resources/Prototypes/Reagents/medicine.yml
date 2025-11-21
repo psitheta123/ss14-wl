@@ -1379,7 +1379,7 @@
       - !type:ModifyBrainOxygen
         amount: 0.5
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           max: 150.0
       # End Offbrand Additions
         # Begin Offbrand Removals
@@ -1415,7 +1415,7 @@
         - !type:ReduceRotting
           seconds: 20
           conditions:
-          - !type:Temperature
+          - !type:TemperatureCondition
             max: 213.0
         # End Offbrand - Derotting moved to necrosol
         - !type:HealthChange
@@ -1478,16 +1478,19 @@
         emote: Scream
         probability: 0.2
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Mannitol
           min: 10.5
-      - !type:ChemVomit
+      - !type:Vomit
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Mannitol
           min: 15
         probability: 0.1
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Mannitol
           min: 10.5
         damage:
           types:

@@ -480,21 +480,22 @@
       statusEffects:
       - statusEffect: StatusEffectHeartStrainRomerol
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 15
       effects:
       - !type:AdjustReagent
         reagent: Romerol
         amount: -10
         conditions:
-        - !type:IsZombie
+        - !type:IsZombieCondition
       - !type:AdjustReagentGaussian
         reagent: Romerol
         μ: 0.35
         σ: 0.1
         conditions:
-        - !type:IsZombieImmune
-          invert: true
+        - !type:IsZombieImmuneCondition
+          inverted: true
       - !type:PopupMessage
         type: Local
         visualType: MediumCaution
@@ -505,14 +506,16 @@
         - zombification-30-message-4
         probability: 0.05
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 15
       - !type:HealthChange
         damage:
           types:
              Poison: 0.15
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 15
       - !type:ModifyHeartDamage
         amount: 2
@@ -533,39 +536,46 @@
           mobstate: Critical
       - !type:Zombify
         conditions:
-        - !type:BrainDamage
+        - !type:BrainDamageCondition
           min: 70
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 15
       - !type:ModifyBrainDamage
         amount: 0.5
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 15
       - !type:ModifyHeartDamage
         amount: 0.2
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 15
       - !type:ModifyLungDamage
         amount: 0.2
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 15
       - !type:AdjustTemperature
         amount: 3000
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 15
       - !type:Jitter
         probability: 0.25
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 30
       - !type:AdjustTemperature
         amount: 6000
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 30
       - !type:PopupMessage
         type: Local
@@ -577,12 +587,14 @@
         - zombification-60-message-4
         probability: 0.05
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 30
       - !type:ModifyBrainDamage
         amount: 0.25
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 45
       - !type:HealthChange
         damage:
@@ -591,7 +603,8 @@
              Blunt: 0.15
              Piercing: 0.15
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 45
       - !type:PopupMessage
         type: Local
@@ -603,12 +616,14 @@
         - zombification-90-message-4
         probability: 0.05
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 45
       - !type:ModifyBrainDamage
         amount: 0.5
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 60
       - !type:PopupMessage
         type: Local
@@ -620,12 +635,14 @@
         - zombification-120-message-4
         probability: 0.05
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 60
       - !type:ModifyBrainDamage
         amount: 5
         conditions:
-        - !type:MetaboliteThreshold
+        - !type:MetaboliteThresholdCondition
+          reagent: Romerol
           min: 70
       - !type:Zombify
         conditions:

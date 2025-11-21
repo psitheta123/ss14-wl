@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Shared.Body.Systems;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.HealthExaminable;
@@ -199,7 +201,7 @@ public sealed class WoundableSystem : EntitySystem
         if (ent.Comp.Damage.Empty)
             return;
 
-        _damageable.TryChangeDamage(args.Target, -ent.Comp.Damage.ToSpecifier(), true, false, null, null, forceRefresh: true);
+        _damageable.TryChangeDamage(args.Target, -ent.Comp.Damage.ToSpecifier(), true, false, forceRefresh: true);
         ValidateWounds(args.Target, null);
     }
 
@@ -260,7 +262,7 @@ public sealed class WoundableSystem : EntitySystem
         comp.CreatedAt = _timing.CurTime;
 
         if (refreshDamage)
-            _damageable.TryChangeDamage(ent.Owner, new(), true, true, null, null, forceRefresh: true);
+            _damageable.TryChangeDamage(ent.Owner, new(), true, true, null, forceRefresh: true);
 
         Dirty(wound.Value, comp);
         return true;
@@ -350,7 +352,7 @@ public sealed class WoundableSystem : EntitySystem
         return bleedAddition * ratio;
     }
 
-    public void ClampWounds(Entity<WoundableComponent?> ent, float probability)
+    public void ClampWounds(Entity<WoundableComponent> ent, float probability)
     {
         var evt = new ClampWoundsEvent(probability);
         RaiseLocalEvent(ent, ref evt);
@@ -361,7 +363,7 @@ public sealed class WoundableSystem : EntitySystem
         if (ent.Comp.Clamped)
             return;
 
-        var seed = SharedRandomExtensions.HashCodeCombine(new() { (int)_timing.CurTick.Value, GetNetEntity(ent).Id });
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
         var rand = new System.Random(seed);
 
         if (!rand.Prob(args.Args.Probability))
@@ -455,8 +457,8 @@ public sealed class WoundableSystem : EntitySystem
             changeBy.TrimZeros();
             if (changeBy.AnyNegative())
             {
-                var actualDelta = _damageable.TryChangeDamage(woundable, changeBy, true, false, null, null, forceRefresh: true);
-                DebugTools.Assert(actualDelta is not null);
+                var actualDelta = _damageable.ChangeDamage(woundable.Owner, changeBy, true, false, null, forceRefresh: true);
+                DebugTools.Assert(!actualDelta.Empty);
                 DebugTools.Assert(changeBy.Equals(actualDelta!), $"{changeBy} == {actualDelta!}");
             }
 

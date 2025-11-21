@@ -298,24 +298,10 @@ namespace Content.Shared.Chemistry.Reagent
     public sealed partial class ReagentStatusEffectEntry
     {
         [DataField]
-        public EntityEffectCondition[]? Conditions;
+        public Content.Shared.EntityConditions.EntityCondition[]? Conditions;
 
         [DataField]
         public EntProtoId StatusEffect;
-
-        public bool ShouldApplyStatusEffect(EntityEffectBaseArgs args)
-        {
-            if (Conditions != null)
-            {
-                foreach (var cond in Conditions)
-                {
-                    if (!cond.Condition(args))
-                        return false;
-                }
-            }
-
-            return true;
-        }
 
         public string? Describe(IPrototypeManager prototype, IEntitySystemManager entSys)
         {
@@ -325,7 +311,7 @@ namespace Content.Shared.Chemistry.Reagent
             return Loc.GetString("reagent-guidebook-status-effect", ("effect", effectProtoData.Name ?? string.Empty),
                 ("conditionCount", Conditions?.Length ?? 0),
                 ("conditions",
-                    Content.Shared.Localizations.ContentLocalizationManager.FormatList(Conditions?.Select(x => x.GuidebookExplanation(prototype)).ToList() ??
+                    Content.Shared.Localizations.ContentLocalizationManager.FormatList(Conditions?.Select(x => x.EntityConditionGuidebookText(prototype)).ToList() ??
                                                             new List<string>())));
         }
     }

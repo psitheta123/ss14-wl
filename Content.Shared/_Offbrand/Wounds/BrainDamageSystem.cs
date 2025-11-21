@@ -121,11 +121,9 @@ public sealed partial class BrainDamageSystem : EntitySystem
         var overlays = new PotentiallyUpdateDamageOverlayEvent(ent);
         RaiseLocalEvent(ent, ref overlays, true);
     }
-    public void TryChangeBrainOxygenation(Entity<BrainDamageComponent?> ent, FixedPoint2 amount)
-    {
-        if (!Resolve(ent, ref ent.Comp, false))
-            return;
 
+    public void TryChangeBrainOxygenation(Entity<BrainDamageComponent> ent, FixedPoint2 amount)
+    {
         ent.Comp.Oxygen = FixedPoint2.Clamp(ent.Comp.Oxygen + amount, FixedPoint2.Zero, ent.Comp.MaxOxygen);
         Dirty(ent);
 
@@ -229,7 +227,7 @@ public sealed partial class BrainDamageSystem : EntitySystem
     {
         var oxygenation = _heart.Spo2((ent.Owner, ent.Comp3));
 
-        var seed = SharedRandomExtensions.HashCodeCombine(new() { (int)_timing.CurTick.Value, GetNetEntity(ent).Id });
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
         var rand = new System.Random(seed);
 
         DoOxygen(ent, oxygenation, rand);

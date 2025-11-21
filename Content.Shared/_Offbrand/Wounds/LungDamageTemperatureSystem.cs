@@ -1,7 +1,7 @@
-using Content.Server.Temperature.Components;
+using Content.Shared.Temperature.Components;
 using Content.Shared._Offbrand.Wounds;
 
-namespace Content.Server._Offbrand.Wounds;
+namespace Content.Shared._Offbrand.Wounds;
 
 public sealed class LungDamageTemperatureSystem : EntitySystem
 {

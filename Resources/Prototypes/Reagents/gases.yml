@@ -333,12 +333,12 @@
         type: Update
       - !type:ModifyStatusEffect # Offbrand
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: NitrousOxide
           min: 1.8
-        - !type:OrganType
-          type: Slime
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+          inverted: false
         effectProto: StatusEffectPainSuppressionNitrousOxide
         time: 3
         type: Add
