@@ -16,6 +16,6 @@ public sealed class IsZombieImmuneConditionEntitySystem : EntityConditionSystem<
 {
     protected override void Condition(Entity<MetaDataComponent> ent, ref EntityConditionEvent<IsZombieImmuneCondition> args)
     {
-        args.Result = HasComp<ZombieImmuneComponent>(ent) ^ args.Condition.Invert;
+        args.Result = HasComp<ZombieImmuneComponent>(ent);
     }
 }
