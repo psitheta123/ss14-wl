@@ -27,7 +27,7 @@
     holiday: DoctorDay
     prototype: WehMedipen
   # WL-Skills-start
-  bonusSkillPoints: 6
+  bonusSkillPoints: 10
   defaultSkills:
     Bureaucracy: 2
     Anatomy: 3

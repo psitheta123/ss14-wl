@@ -35,7 +35,7 @@
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
   # WL-Skills-start
-  bonusSkillPoints: 8
+  bonusSkillPoints: 10
   defaultSkills:
     Bureaucracy: 2
     Eva: 3
