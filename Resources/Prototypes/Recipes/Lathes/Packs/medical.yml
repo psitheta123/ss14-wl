@@ -35,6 +35,9 @@
   - Drill
   - Saw
   - Hemostat
+  # WL-Corvax-Edit-Start
+  - SurgicalCase
+  # WL-Corvax-Edit-End
 
 - type: latheRecipePack
   id: MedicalStatic
@@ -105,3 +108,7 @@
   - StasisBedMachineCircuitboard
   - CryoPodMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
+  - MedicalScannerMachineCircuitboard # WL-Offmed: Cloning start
+  - CloningPodMachineCircuitboard
+  - CloningConsoleComputerCircuitboard
+  # WL-Offmed: Cloning end

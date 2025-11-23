@@ -6,6 +6,7 @@ using Content.Shared.Body.Prototypes;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Contraband;
 using Content.Shared.EntityEffects;
+using Content.Shared.EntityConditions;
 using Content.Shared.Localizations;
 using Content.Shared.Nutrition;
 using Content.Shared.Roles;
@@ -208,9 +209,10 @@ namespace Content.Shared.Chemistry.Reagent
             return removed;
         }
 
-        public IEnumerable<string> GuidebookReagentEffectsDescription(IPrototypeManager prototype, IEntitySystemManager entSys, IEnumerable<EntityEffect> effects, FixedPoint2? metabolism = null)
+        public IEnumerable<string> GuidebookReagentEffectsDescription(IPrototypeManager prototype, IEntitySystemManager entSys, IEnumerable<EntityEffect> effects, FixedPoint2? metabolism = null/*WL-Offbrand start*List<ReagentStatusEffectEntry> StatusEffects = new()*WL-Offbrand end*/)
         {
             return effects.Select(x => GuidebookReagentEffectDescription(prototype, entSys, x, metabolism))
+                //.Concat(StatusEffects.Select(x => x.Describe(prototype, entSys))) // Offbrand
                 .Where(x => x is not null)
                 .Select(x => x!)
                 .ToArray();
@@ -271,6 +273,12 @@ namespace Content.Shared.Chemistry.Reagent
         [JsonPropertyName("rate")]
         [DataField("metabolismRate")]
         public FixedPoint2 MetabolismRate = FixedPoint2.New(0.5f);
+
+        /// <summary>
+        /// Offbrand: Status effects to apply whilst this reagent is metabolising
+        /// </summary>
+        //[DataField]
+        //public List<ReagentStatusEffectEntry> StatusEffects = new();
 
         /// <summary>
         ///     A list of effects to apply when these reagents are metabolized.

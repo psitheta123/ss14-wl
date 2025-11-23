@@ -17,7 +17,7 @@ public sealed partial class DamageableSystem
         SubscribeLocalEvent<DamageableComponent, ComponentHandleState>(DamageableHandleState);
         SubscribeLocalEvent<DamageableComponent, ComponentGetState>(DamageableGetState);
         SubscribeLocalEvent<DamageableComponent, OnIrradiatedEvent>(OnIrradiated);
-        SubscribeLocalEvent<DamageableComponent, RejuvenateEvent>(OnRejuvenate);
+        SubscribeLocalEvent<DamageableComponent, RejuvenateEvent>(OnRejuvenate, after: [typeof(Content.Shared.StatusEffectNew.StatusEffectsSystem)]); // Offbrand
 
         _appearanceQuery = GetEntityQuery<AppearanceComponent>();
         _damageableQuery = GetEntityQuery<DamageableComponent>();
@@ -261,11 +261,18 @@ public sealed class DamageChangedEvent : EntityEventArgs
     /// </summary>
     public readonly EntityUid? Origin;
 
+    // Offbrand
+        /// <summary>
+        /// If this damage changed happened as part of a forced refresh
+        /// </summary>
+        public readonly bool ForcedRefresh;
+
     public DamageChangedEvent(
         DamageableComponent damageable,
         DamageSpecifier? damageDelta,
         bool interruptsDoAfters,
-        EntityUid? origin
+        EntityUid? origin,
+        bool forcedRefresh = false // Offbrand
     )
     {
         Damageable = damageable;

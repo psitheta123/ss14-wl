@@ -33,7 +33,7 @@
             Poison: 1.5
       - !type:AdjustAlert
         alertType: Toxins
-        minScale: 1
+        minScale: 0.01
         conditions:
           - !type:MetabolizerTypeCondition
             type: [ Vox ]
@@ -76,10 +76,10 @@
         ignoreResistances: true
         damage:
           types:
-            Poison: 0.7
+            Poison: 20
       - !type:AdjustAlert
         alertType: Toxins
-        minScale: 1
+        minScale: 0.07
         conditions:
           - !type:MetabolizerTypeCondition
             type: [ Vox ]
@@ -375,6 +375,17 @@
         effectProto: StatusEffectForcedSleeping
         time: 3
         type: Update
+      - !type:ModifyStatusEffect # Offbrand
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrousOxide
+          min: 1.8
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+          inverted: true
+        effectProto: StatusEffectPainSuppressionNitrousOxide
+        time: 3
+        type: Add
       - !type:HealthChange
         minScale: 7
         conditions:

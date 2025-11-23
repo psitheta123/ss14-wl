@@ -214,4 +214,18 @@ public sealed partial class RevenantComponent : Component
     [DataField("harvestingState")]
     public string HarvestingState = "harvesting";
     #endregion
+
+    [DataField] public EntityUid? Action;
+
+    /// <summary>
+    /// Offbrand - how much cold damage to deal on harvest
+    /// </summary>
+    [DataField]
+    public Content.Shared.Damage.DamageSpecifier HarvestDamage = new()
+    {
+        DamageDict = new()
+        {
+            { "Cold", 200 },
+        }
+    };
 }
