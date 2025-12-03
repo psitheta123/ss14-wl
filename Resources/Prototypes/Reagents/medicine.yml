@@ -2078,7 +2078,7 @@
   physicalDesc: reagent-physical-desc-sickly
   flavor: acid
   color: "#b5e36d"
-  worksOnTheDead: true # Offbrand # WL-Changes: Return worksOnTheDead
+  # worksOnTheDead: true # Offbrand
   metabolisms:
     Medicine:
       effects:
