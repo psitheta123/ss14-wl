@@ -24,6 +24,7 @@ wound-clamped = [color=red]У пациента пережаты артерии.[
 wound-retracted = [color=red]У пациента раздвинута кожа.[/color]
 wound-ribcage-open = [color=red]У пациента открыта грудная клетка.[/color]
 wound-arterial-bleeding = [color=red]Пациент имеет артериальное кровотечение.[/color]
+wound-husking = [color=red]Пациент имеет ожоги четвёртой степени.[/color]
 
 etco2-carbon-dioxide = EtCO2
 etco2-ammonia = EtNH3
