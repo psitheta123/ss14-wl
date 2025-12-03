@@ -1,5 +1,4 @@
 using Content.Server.Body.Components;
-using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Prototypes;
@@ -35,10 +34,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
     [Dependency] private readonly SharedEntityConditionsSystem _entityConditions = default!;
     [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    //Start Offbrand WL
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly Content.Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
-    //End Offbrand WL
 
     private EntityQuery<OrganComponent> _organQuery;
     private EntityQuery<SolutionContainerManagerComponent> _solutionQuery;
@@ -46,14 +42,14 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
 
     public override void Initialize()
     {
+        base.Initialize();
+
         _organQuery = GetEntityQuery<OrganComponent>();
         _solutionQuery = GetEntityQuery<SolutionContainerManagerComponent>();
 
         SubscribeLocalEvent<MetabolizerComponent, ComponentInit>(OnMetabolizerInit);
         SubscribeLocalEvent<MetabolizerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<MetabolizerComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
-
-        //base.Initialize();
     }
 
     private void OnMapInit(Entity<MetabolizerComponent> ent, ref MapInitEvent args)
@@ -69,13 +65,8 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
         }
         else if (_organQuery.CompOrNull(entity)?.Body is { } body)
         {
-            entity.Comp.NextUpdate = _gameTiming.CurTime + entity.Comp.AdjustedUpdateInterval;
+            _solutionContainerSystem.EnsureSolution(body, entity.Comp.SolutionName, out _);
         }
-    }
-
-    private void OnUnpaused(Entity<MetabolizerComponent> ent, ref EntityUnpausedEvent args)
-    {
-        ent.Comp.NextUpdate += args.PausedTime;
     }
 
     private void OnApplyMetabolicMultiplier(Entity<MetabolizerComponent> ent, ref ApplyMetabolicMultiplierEvent args)
@@ -149,7 +140,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
         var list = solution.Contents.ToArray();
         _random.Shuffle(list);
 
-        var metabolized = new HashSet<ProtoId<ReagentPrototype>>();
+        var metabolized = new HashSet<ProtoId<ReagentPrototype>>(); // Offbrand
         int reagents = 0;
         foreach (var (reagent, quantity) in list)
         {
@@ -167,17 +158,19 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                 continue;
             }
 
-            // Begin Offbrand - No we're not
+            // Offbrand - keep processing for status effects and metabolites
             // we're done here entirely if this is true
             // if (reagents >= ent.Comp1.MaxReagentsProcessable)
             //     return;
+
+            metabolized.Add(reagent.Prototype);
             // End Offbrand
-            metabolized.Add(reagent.Prototype); // Offbrand
 
             // loop over all our groups and see which ones apply
             if (ent.Comp1.MetabolismGroups is null)
                 continue;
 
+            // TODO: Kill MetabolismGroups!
             foreach (var group in ent.Comp1.MetabolismGroups)
             {
                 if (!proto.Metabolisms.TryGetValue(group.Id, out var entry))
@@ -188,7 +181,12 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                 // Remove $rate, as long as there's enough reagent there to actually remove that much
                 mostToRemove = FixedPoint2.Clamp(rate, 0, quantity);
 
-                float scale = (float) mostToRemove / (float) rate;
+                var scale = (float) mostToRemove;
+
+                // TODO: This is a very stupid workaround to lungs heavily relying on scale = reagent quantity. Needs lung and metabolism refactors to remove.
+                // TODO: Lungs just need to have their scale be equal to the mols consumed, scale needs to be not hardcoded either and configurable per metabolizer...
+                if (group.Id != Gas)
+                    scale /= (float) entry.MetabolismRate;
 
                 // if it's possible for them to be dead, and they are,
                 // then we shouldn't process any effects, but should probably
@@ -200,10 +198,16 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                 }
 
                 var actualEntity = ent.Comp2?.Body ?? solutionEntityUid.Value;
-                //var args = new EntityEffectReagentArgs(actualEntity, EntityManager, ent, solution, mostToRemove, proto, null, scale);
 
-                // Begin Offbrand
-                // End Offbrand
+                // Begin Offbrand - status effects
+                foreach (var effect in entry.StatusEffects)
+                {
+                    if (!_entityConditions.TryConditions(actualEntity, effect.Conditions))
+                        _statusEffects.TryRemoveStatusEffect(actualEntity, effect.StatusEffect);
+                    else
+                        _statusEffects.TryUpdateStatusEffectDuration(actualEntity, effect.StatusEffect, out _);
+                }
+                // End Offbrand - status effects
 
                 // do all effects, if conditions apply
                 foreach (var effect in entry.Effects)
@@ -219,6 +223,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                         continue;
 
                     ApplyEffect(effect);
+
                 }
 
                 // TODO: We should have to do this with metabolism. ReagentEffect struct needs refactoring and so does metabolism!
@@ -247,17 +252,15 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                 // We have processed a reagant, so count it towards the cap
                 reagents += 1;
 
-                // Begin Offbrand
+                // Begin Offbrand - track metabbolites
                 if (!ent.Comp1.Metabolites.ContainsKey(reagent.Prototype))
                     ent.Comp1.Metabolites[reagent.Prototype] = 0;
-
                 ent.Comp1.Metabolites[reagent.Prototype] += removed;
-                // End Offbrand
+                // End Offbrand - track metabbolites
             }
         }
 
         // Begin Offbrand
-        /*
         foreach (var reagent in ent.Comp1.MetabolizingReagents)
         {
             if (metabolized.Contains(reagent))
@@ -283,7 +286,6 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                 }
             }
         }
-        */
         ent.Comp1.MetabolizingReagents = metabolized;
 
         foreach (var metaboliteReagent in ent.Comp1.Metabolites.Keys)
@@ -322,6 +324,15 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
         _solutionContainerSystem.UpdateChemicals(soln.Value);
     }
 
+    /// <summary>
+    /// Public API to check if a certain metabolism effect can be applied to an entity.
+    /// TODO: With metabolism refactor make this logic smarter and unhardcode the old hardcoding entity effects used to have for metabolism!
+    /// </summary>
+    /// <param name="body">The body metabolizing the effects</param>
+    /// <param name="organ">The organ doing the metabolizing</param>
+    /// <param name="solution">The solution we are metabolizing from</param>
+    /// <param name="conditions">The conditions that need to be met to metabolize</param>
+    /// <returns>True if we can metabolize! False if we cannot!</returns>
     public bool CanMetabolizeEffect(EntityUid body, EntityUid organ, Entity<SolutionComponent> solution, EntityCondition[] conditions)
     {
         foreach (var condition in conditions)

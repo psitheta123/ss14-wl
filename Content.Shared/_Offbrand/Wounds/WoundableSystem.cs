@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Body.Systems;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage;
@@ -201,7 +202,7 @@ public sealed class WoundableSystem : EntitySystem
         if (ent.Comp.Damage.Empty)
             return;
 
-        _damageable.TryChangeDamage(args.Target, -ent.Comp.Damage.ToSpecifier(), true, false, null, forceRefresh: true);
+        _damageable.TryChangeDamage(args.Target, -ent.Comp.Damage.ToSpecifier(), true, false, forceRefresh: true);
         ValidateWounds(args.Target, null);
     }
 
@@ -352,7 +353,7 @@ public sealed class WoundableSystem : EntitySystem
         return bleedAddition * ratio;
     }
 
-    public void ClampWounds(Entity<WoundableComponent?> ent, float probability)
+    public void ClampWounds(Entity<WoundableComponent> ent, float probability)
     {
         var evt = new ClampWoundsEvent(probability);
         RaiseLocalEvent(ent, ref evt);
@@ -455,16 +456,14 @@ public sealed class WoundableSystem : EntitySystem
 
             var changeBy = damage - remainder.ToSpecifier();
             changeBy.TrimZeros();
-            TryComp<DamageableComponent>(woundable, out var comp);
-            var damageable = new Entity<DamageableComponent?>(woundable, comp);
             if (changeBy.AnyNegative())
             {
-                _damageable.TryChangeDamage(damageable, changeBy, out var actualDelta, true, false, null, forceRefresh: true);
-                DebugTools.Assert(actualDelta is not null);
+                var actualDelta = _damageable.ChangeDamage(woundable.Owner, changeBy, true, false, null, forceRefresh: true);
+                DebugTools.Assert(!actualDelta.Empty);
                 DebugTools.Assert(changeBy.Equals(actualDelta!), $"{changeBy} == {actualDelta!}");
             }
 
-            ValidateWounds(damageable, null);
+            ValidateWounds(woundable, null);
         }
         Dirty(ent);
     }
