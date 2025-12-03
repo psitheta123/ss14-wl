@@ -2078,7 +2078,7 @@
   physicalDesc: reagent-physical-desc-sickly
   flavor: acid
   color: "#b5e36d"
-  # worksOnTheDead: true # Offbrand
+  worksOnTheDead: true # Offbrand # WL-Changes: Pussy gamers
   metabolisms:
     Medicine:
       effects:
