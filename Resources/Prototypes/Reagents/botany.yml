@@ -125,21 +125,19 @@
     Poison:
       # Begin Offbrand
       metabolismRate: 0.2
-      effects:
-      - !type:ModifyStatusEffect
-        type: Set
-        time: 1.5
-        effectProto: StatusEffectPainkillersNegligibleRobustHarvest
+      statusEffects:
+      - statusEffect: StatusEffectPainkillersNegligibleRobustHarvest
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
+      effects:
       - !type:HealthChange
         damage:
           types:
             Poison: -1
       - !type:EvenHealthChange
         damage:
-          Brute: -0.75 # Offbrand
+          Brute: -1 # Offbrand
       # End Offbrand
         conditions:
         - !type:MetabolizerTypeCondition
@@ -156,14 +154,16 @@
             Asphyxiation: 1
             Heat: 2
             Poison: 1
-    Medicine:
-      effects:
+    # Begin Offbrand Removals
+    # Medicine:
+    #   effects:
+    # End Offbrand Removals
       - !type:Polymorph
         prototype: TreeMorph
         conditions:
           - !type:MetabolizerTypeCondition
             type: [Plant]
-          - !type:ReagentCondition
+          - !type:MetaboliteThresholdCondition # Offbrand
             reagent: RobustHarvest
             min: 80
 
@@ -322,7 +322,7 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Vox ]
-        factor: -4
+        factor: -1
     Cischi:
       effects:
       - !type:Drunk
@@ -361,7 +361,7 @@
             Caustic: 0.5
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [Plant]
+          type: [ Plant ]
           inverted: true
       - !type:HealthChange
         damage:
@@ -371,5 +371,5 @@
             Shock: -0.5
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [Plant]
+          type: [ Plant ]
       # End Offbrand

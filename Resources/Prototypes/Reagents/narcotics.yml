@@ -461,11 +461,9 @@
   meltingPoint: 128.0
   metabolisms:
     Narcotic:
+      statusEffects: # Offbrand
+      - statusEffect: StatusEffectPainSuppressionNocturine
       effects: # It would be nice to have speech slurred or mumbly, but accents are a bit iffy atm. Same for distortion effects.
-      - !type:ModifyStatusEffect
-        type: Set
-        time: 1.5
-        effectProto: StatusEffectPainSuppressionNocturine
       - !type:MovementSpeedModifier
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65

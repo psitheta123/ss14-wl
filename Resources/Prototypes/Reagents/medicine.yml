@@ -292,21 +292,16 @@
   metabolisms:
     Medicine:
       # Begin Offbrand
+      statusEffects:
+      - statusEffect: StatusEffectMinorOxygenationCryoxadone
+        conditions:
+        - !type:TemperatureCondition
+          max: 213.0
+      - statusEffect: StatusEffectHeartStabilizationCryoxadone
+        conditions:
+        - !type:TemperatureCondition
+          max: 213.0
       effects:
-        - !type:ModifyStatusEffect
-          type: Set
-          time: 1.5
-          effectProto: StatusEffectMinorOxygenationCryoxadone
-          conditions:
-          - !type:TemperatureCondition
-            max: 213.0
-        - !type:ModifyStatusEffect
-          type: Set
-          time: 1.5
-          effectProto: StatusEffectHeartStabilizationCryoxadone
-          conditions:
-          - !type:TemperatureCondition
-            max: 213.0
         - !type:ModifyHeartDamage
           amount: -0.3
           conditions:
@@ -344,7 +339,7 @@
         # End Offbrand
         # - !type:HealthChange
         #   conditions:
-        #   - !type:Temperature
+        #   - !type:TemperatureCondition
         #     # this is a little arbitrary but they gotta be pretty cold
         #     max: 213.0
         #   damage:
@@ -545,11 +540,9 @@
     Medicine:
       # Begin Offbrand
       metabolismRate: 0.25
+      statusEffects:
+      - statusEffect: StatusEffectEpinephrine
       effects:
-      - !type:ModifyStatusEffect
-        type: Set
-        time: 1.5
-        effectProto: StatusEffectHeartStrainEpinephrine
       - !type:StartHeart
         probability: 0.03
       # End Offbrand
@@ -1128,7 +1121,8 @@
         # Begin Offbrand Removals
         # - !type:CureZombieInfection
         #   conditions:
-        #     - !type:ReagentThreshold
+        #     - !type:ReagentCondition
+        #       reagent: Ambuzol
         #       min: 10
         # End Offbrand Removals
 
@@ -2084,7 +2078,7 @@
   physicalDesc: reagent-physical-desc-sickly
   flavor: acid
   color: "#b5e36d"
-  worksOnTheDead: true # Offbrand # WL-Changes: Return worksOnTheDead
+  worksOnTheDead: true # Offbrand # WL-Changes: Pussy gamers
   metabolisms:
     Medicine:
       effects:
@@ -2105,7 +2099,7 @@
         #   seconds: 20
         #   conditions:
         #   #Patient must be dead and in a cryo tube (or something cold)
-        #   - !type:Temperature
+        #   - !type:TemperatureCondition
         #     max: 150.0
         #   - !type:MobStateCondition
         #     mobstate: Dead
@@ -2236,7 +2230,8 @@
             Poison: 1
       # - !type:PopupMessage
       #   conditions:
-      #   - !type:ReagentThreshold
+      #   - !type:ReagentCondition
+      #     reagent: Mannitol
       #     min: 15
       #   type: Local
       #   visualType: Medium

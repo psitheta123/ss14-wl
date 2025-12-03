@@ -1,3 +1,4 @@
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;

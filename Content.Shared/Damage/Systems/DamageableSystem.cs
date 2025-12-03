@@ -48,7 +48,8 @@ public sealed partial class DamageableSystem : EntitySystem
         DamageSpecifier? damageDelta = null,
         bool interruptsDoAfters = true,
         EntityUid? origin = null,
-        bool forcedRefresh = false) // Offbrand
+        bool forceRefresh = false // Offbrand
+    )
     {
         ent.Comp.Damage.GetDamagePerGroup(_prototypeManager, ent.Comp.DamagePerGroup);
         ent.Comp.TotalDamage = ent.Comp.Damage.GetTotal();
@@ -66,7 +67,7 @@ public sealed partial class DamageableSystem : EntitySystem
 
         // TODO DAMAGE
         // byref struct event.
-        RaiseLocalEvent(ent, new DamageChangedEvent(ent.Comp, damageDelta, interruptsDoAfters, origin, forcedRefresh));
+        RaiseLocalEvent(ent, new DamageChangedEvent(ent.Comp, damageDelta, interruptsDoAfters, origin, forceRefresh)); // Offbrand
     }
 
     private void DamageableGetState(Entity<DamageableComponent> ent, ref ComponentGetState args)

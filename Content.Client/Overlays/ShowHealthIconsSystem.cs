@@ -6,9 +6,9 @@ using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using Content.Shared.Damage.Components;
 using Content.Shared._Offbrand.Wounds; // Offbrand
 using Content.Shared.Mobs; // Offbrand
-using Content.Shared.Damage.Components;
 
 namespace Content.Client.Overlays;
 

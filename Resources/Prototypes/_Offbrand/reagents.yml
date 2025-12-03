@@ -234,21 +234,16 @@
   color: "#4053b0"
   metabolisms:
     Medicine:
+      statusEffects:
+      - statusEffect: StatusEffectMajorOxygenationCloneoxadone
+        conditions:
+        - !type:TemperatureCondition
+          max: 170.0
+      - statusEffect: StatusEffectHeartStabilizationCloneoxadone
+        conditions:
+        - !type:TemperatureCondition
+          max: 170.0
       effects:
-      - !type:ModifyStatusEffect
-        type: Set
-        time: 1.5
-        effectProto: StatusEffectMajorOxygenationCloneoxadone
-        conditions:
-        - !type:TemperatureCondition
-          max: 170.0
-      - !type:ModifyStatusEffect
-        type: Set
-        time: 1.5
-        effectProto: StatusEffectHeartStabilizationCloneoxadone
-        conditions:
-        - !type:TemperatureCondition
-          max: 170.0
       - !type:ModifyHeartDamage
         amount: -0.6
         conditions:
@@ -350,14 +345,15 @@
         type: Remove
         effectProto: WoundFracture
         conditions:
-        - !type:MetaboliteCondition
+        - !type:MetaboliteThresholdCondition
           reagent: Osseous
           min: 5
       - !type:AdjustReagent
         reagent: Osseous
         amount: -5
         conditions:
-        - !type:MetaboliteCondition
+        - !type:MetaboliteThresholdCondition
+          reagent: Osseous
           min: 5
 
 - type: reagent
@@ -377,8 +373,8 @@
             Asphyxiation: -4
             Blunt: 1
         conditions:
-        - !type:TotalGroupDamageCondition
-          group: Airloss
+        - !type:DamageGroupCondition
+          damageGroup: Airloss
           min: 4
       - !type:HealthChange
         damage:
@@ -386,11 +382,11 @@
             Asphyxiation: -4
             Blunt: 1
         conditions:
-        - !type:MetaboliteCondition
+        - !type:MetaboliteThresholdCondition
           reagent: Convermol
           min: 10
-        - !type:TotalGroupDamageCondition
-          group: Airloss
+        - !type:DamageGroupCondition
+          damageGroup: Airloss
           min: 4
       - !type:ModifyLungDamage
         amount: 0.05
@@ -412,17 +408,17 @@
         type: Set
         time: 1.5
         conditions:
-        - !type:TotalGroupDamageCondition
-          group: Brute
+        - !type:DamageGroupCondition
+          damageGroup: Brute
           min: 35
       - !type:EvenHealthChange
         damage:
           Brute: -2
         conditions:
-        - !type:TotalGroupDamageCondition
-          group: Brute
+        - !type:DamageGroupCondition
+          damageGroup: Brute
           min: 35
-        - !type:MetaboliteCondition
+        - !type:MetaboliteThresholdCondition
           reagent: SalicylicAcid
           max: 15
       - !type:EvenHealthChange
@@ -430,28 +426,28 @@
           Brute: -2
           Burn: 2
         conditions:
-        - !type:MetaboliteCondition
+        - !type:MetaboliteThresholdCondition
           reagent: SalicylicAcid
           min: 15
       - !type:EvenHealthChange
         damage:
           Brute: -0.5
         conditions:
-        - !type:TotalGroupDamageCondition
-          group: Brute
+        - !type:DamageGroupCondition
+          damageGroup: Brute
           max: 35
       - !type:ModifyStatusEffect
         effectProto: WoundBoneDeath
         type: Remove
         conditions:
-        - !type:MetaboliteCondition
+        - !type:MetaboliteThresholdCondition
           reagent: SalicylicAcid
           min: 50
       - !type:EvenHealthChange
         damage:
           Burn: 1
         conditions:
-        - !type:MetaboliteCondition
+        - !type:MetaboliteThresholdCondition
           reagent: SalicylicAcid
           min: 35
 
@@ -472,17 +468,17 @@
         time: 1.5
         effectProto: StatusEffectPainkillersOxandrolone
         conditions:
-        - !type:TotalGroupDamageCondition
-          group: Burn
+        - !type:DamageGroupCondition
+          damageGroup: Burn
           min: 35
       - !type:EvenHealthChange
         damage:
           Burn: -3
         conditions:
-        - !type:TotalGroupDamageCondition
-          group: Burn
+        - !type:DamageGroupCondition
+          damageGroup: Burn
           min: 35
-        - !type:MetaboliteCondition
+        - !type:MetaboliteThresholdCondition
           reagent: Oxandrolone
           max: 15
       - !type:EvenHealthChange
@@ -490,27 +486,27 @@
           Burn: -3
           Brute: 3
         conditions:
-        - !type:MetaboliteCondition
+        - !type:MetaboliteThresholdCondition
           reagent: Oxandrolone
           min: 15
       - !type:EvenHealthChange
         damage:
           Burn: -0.5
         conditions:
-        - !type:TotalGroupDamageCondition
-          group: Burn
+        - !type:DamageGroupCondition
+          damageGroup: Burn
           max: 35
       - !type:ModifyStatusEffect
         type: Remove
         effectProto: WoundHusking
         conditions:
-        - !type:MetaboliteCondition
+        - !type:MetaboliteThresholdCondition
           reagent: Oxandrolone
           min: 50
       - !type:EvenHealthChange
         damage:
           Brute: 1
         conditions:
-        - !type:MetaboliteCondition
+        - !type:MetaboliteThresholdCondition
           reagent: Oxandrolone
           min: 35

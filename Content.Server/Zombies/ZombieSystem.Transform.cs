@@ -43,8 +43,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Roles;
-using Content.Shared._Offbrand.Wounds; // Offbrand
 using Content.Shared.Temperature.Components;
+using Content.Shared._Offbrand.Wounds; // Offbrand
 
 namespace Content.Server.Zombies;
 
@@ -152,10 +152,9 @@ public sealed partial class ZombieSystem
         {
             RemComp<HeartrateComponent>(target);
             RemComp<HeartDefibrillatableComponent>(target);
-            RemComp<HeartStopOnHypovolemiaComponent>(target);
             RemComp<HeartStopOnHighStrainComponent>(target);
-            RemComp<HeartStopOnBrainHealthComponent>(target);
             RemComp<PainComponent>(target);
+            RemComp<PainMetabolicRateComponent>(target);
             RemComp<HeartrateAlertsComponent>(target);
             RemComp<ShockThresholdsComponent>(target);
             RemComp<ShockAlertsComponent>(target);

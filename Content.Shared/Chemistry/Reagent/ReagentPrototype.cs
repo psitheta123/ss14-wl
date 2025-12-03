@@ -6,7 +6,6 @@ using Content.Shared.Body.Prototypes;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Contraband;
 using Content.Shared.EntityEffects;
-using Content.Shared.EntityConditions;
 using Content.Shared.Localizations;
 using Content.Shared.Nutrition;
 using Content.Shared.Roles;
@@ -209,10 +208,9 @@ namespace Content.Shared.Chemistry.Reagent
             return removed;
         }
 
-        public IEnumerable<string> GuidebookReagentEffectsDescription(IPrototypeManager prototype, IEntitySystemManager entSys, IEnumerable<EntityEffect> effects, FixedPoint2? metabolism = null/*WL-Offbrand start*List<ReagentStatusEffectEntry> StatusEffects = new()*WL-Offbrand end*/)
+        public IEnumerable<string> GuidebookReagentEffectsDescription(IPrototypeManager prototype, IEntitySystemManager entSys, IEnumerable<EntityEffect> effects, FixedPoint2? metabolism = null)
         {
             return effects.Select(x => GuidebookReagentEffectDescription(prototype, entSys, x, metabolism))
-                //.Concat(StatusEffects.Select(x => x.Describe(prototype, entSys))) // Offbrand
                 .Where(x => x is not null)
                 .Select(x => x!)
                 .ToArray();
@@ -277,8 +275,8 @@ namespace Content.Shared.Chemistry.Reagent
         /// <summary>
         /// Offbrand: Status effects to apply whilst this reagent is metabolising
         /// </summary>
-        //[DataField]
-        //public List<ReagentStatusEffectEntry> StatusEffects = new();
+        [DataField]
+        public List<ReagentStatusEffectEntry> StatusEffects = new();
 
         /// <summary>
         ///     A list of effects to apply when these reagents are metabolized.
@@ -294,6 +292,30 @@ namespace Content.Shared.Chemistry.Reagent
             return new ReagentEffectsGuideEntry(MetabolismRate, proto.GuidebookReagentEffectsDescription(prototype, entSys, Effects, MetabolismRate).ToArray());
         }
     }
+
+    // Begin Offbrand
+    [DataDefinition]
+    public sealed partial class ReagentStatusEffectEntry
+    {
+        [DataField]
+        public Content.Shared.EntityConditions.EntityCondition[]? Conditions;
+
+        [DataField]
+        public EntProtoId StatusEffect;
+
+        public string? Describe(IPrototypeManager prototype, IEntitySystemManager entSys)
+        {
+            if (!prototype.Resolve(StatusEffect, out var effectProtoData))
+                return null;
+
+            return Loc.GetString("reagent-guidebook-status-effect", ("effect", effectProtoData.Name ?? string.Empty),
+                ("conditionCount", Conditions?.Length ?? 0),
+                ("conditions",
+                    Content.Shared.Localizations.ContentLocalizationManager.FormatList(Conditions?.Select(x => x.EntityConditionGuidebookText(prototype)).ToList() ??
+                                                            new List<string>())));
+        }
+    }
+    // End Offbrand
 
     [Serializable, NetSerializable]
     public struct ReagentEffectsGuideEntry
