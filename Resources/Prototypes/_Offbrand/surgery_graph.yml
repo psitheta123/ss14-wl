@@ -15,7 +15,7 @@
           wound: WoundIncision
           damages:
             damageDict:
-              Slash: 0.1
+              Slash: 10
   - node: OpenIncision
     edges:
     - &stop_surgery
@@ -43,7 +43,7 @@
           wound: WoundClamped
           damages:
             damageDict:
-              Blunt: 0.05
+              Blunt: 5
   - node: ClampedBleeders
     edges:
     - *stop_surgery
@@ -56,7 +56,7 @@
           wound: WoundRetracted
           damages:
             damageDict:
-              Blunt: 0.05
+              Blunt: 5
   - node: RetractedIncision
     edges:
     - *stop_surgery
@@ -83,7 +83,7 @@
         wound: WoundOpenRibCage
         damages:
           damageDict:
-            Blunt: 0.05
+            Blunt: 5
       steps:
       - tool: Sawing
         doAfter: 5
