@@ -1,3 +1,4 @@
+using Content.Server._WL.ChatGpt.Managers;
 using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -17,6 +18,8 @@ using Content.Server.Info;
 using Content.Server.IoC;
 using Content.Server.Maps;
 using Content.Server.NodeContainer.NodeGroups;
+using Content.Server.Objectives;
+using Content.Server.Players;
 using Content.Server.Players.JobWhitelist;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Players.RateLimiting;
@@ -118,6 +121,57 @@ namespace Content.Server.Entry
             _log.GetSawmill("Storage").Level = LogLevel.Info;
             _log.GetSawmill("db.ef").Level = LogLevel.Info;
 
+    /*
+            ServerContentIoC.Register();
+
+            foreach (var callback in TestingCallbacks)
+            {
+                var cast = (ServerModuleTestingCallbacks) callback;
+                cast.ServerBeforeIoC?.Invoke();
+            }
+
+            IoCManager.BuildGraph();
+            factory.GenerateNetIds();
+            var configManager = IoCManager.Resolve<IConfigurationManager>();
+            var dest = configManager.GetCVar(CCVars.DestinationFile);
+            IoCManager.Resolve<ContentLocalizationManager>().Initialize();
+            if (string.IsNullOrEmpty(dest)) //hacky but it keeps load times for the generator down.
+            {
+                _euiManager = IoCManager.Resolve<EuiManager>();
+                _voteManager = IoCManager.Resolve<IVoteManager>();
+                _updateManager = IoCManager.Resolve<ServerUpdateManager>();
+                _playTimeTracking = IoCManager.Resolve<PlayTimeTrackingManager>();
+                _connectionManager = IoCManager.Resolve<IConnectionManager>();
+                _sysMan = IoCManager.Resolve<IEntitySystemManager>();
+                _dbManager = IoCManager.Resolve<IServerDbManager>();
+                _watchlistWebhookManager = IoCManager.Resolve<IWatchlistWebhookManager>();
+
+                logManager.GetSawmill("Storage").Level = LogLevel.Info;
+                logManager.GetSawmill("db.ef").Level = LogLevel.Info;
+
+                IoCManager.Resolve<IAdminLogManager>().Initialize();
+                IoCManager.Resolve<IConnectionManager>().Initialize();
+                _dbManager.Init();
+                IoCManager.Resolve<IServerPreferencesManager>().Init();
+                IoCManager.Resolve<INodeGroupFactory>().Initialize();
+                IoCManager.Resolve<ContentNetworkResourceManager>().Initialize();
+                IoCManager.Resolve<GhostKickManager>().Initialize();
+                IoCManager.Resolve<TTSManager>().Initialize(); // Corvax-TTS
+                IoCManager.Resolve<ServerInfoManager>().Initialize();
+                IoCManager.Resolve<ServerApi>().Initialize();
+
+                _voteManager.Initialize();
+                _updateManager.Initialize();
+                _playTimeTracking.Initialize();
+                _watchlistWebhookManager.Initialize();
+                IoCManager.Resolve<JobWhitelistManager>().Initialize();
+                IoCManager.Resolve<PlayerRateLimitManager>().Initialize();
+
+                //WL-Changes-start
+                IoCManager.Resolve<IChatGptManager>().Initialize();
+                //WL-Changes-end
+            }
+            */
             _adminLog.Initialize();
             _connection.Initialize();
             _dbManager.Init();
@@ -134,6 +188,9 @@ namespace Content.Server.Entry
             _job.Initialize();
             _rateLimit.Initialize();
             IoCManager.Resolve<TTSManager>().Initialize(); // Corvax-TTS
+            //WL-Changes-start
+            IoCManager.Resolve<IChatGptManager>().Initialize();
+            //WL-Changes-end
         }
 
         public override void PostInit()

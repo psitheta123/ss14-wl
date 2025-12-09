@@ -1,3 +1,4 @@
+using Content.Server._WL.ChatGpt.Managers;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -31,8 +32,6 @@ using Content.Shared.IoC;
 using Content.Shared.Kitchen;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
-
-namespace Content.Server.IoC;
 
 internal static class ServerContentIoC
 {
@@ -82,5 +81,8 @@ internal static class ServerContentIoC
         deps.Register<DiscordLink>();
         deps.Register<DiscordChatLink>();
         IoCManager.Register<TTSManager>(); // Corvax-TTS
+        //WL-Changes-start
+        IoCManager.Register<IChatGptManager, ChatGptManager>();
+        //WL-Changes-end
     }
 }

@@ -104,7 +104,8 @@
       - id: Brutepack
       - id: Ointment
       - id: Gauze
-      - id: Bloodpack
+      - id: ChemistryBottleParacetamol # Offbrand
+      - id: Bloodpack # WL-Change: bloodpack
     - id: SyndicateBusinessCard
       weight: 0.5
 
